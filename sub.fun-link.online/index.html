@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>fun-link-キミとつながるシンセカイの実現へ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- メインスタイルシート -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- 緊急修正用インラインスタイル -->
+    <style>
+			/* 緊急メニュー修正 */
+.nav-menu {
+  display: flex !important;
+  position: fixed !important;
+  top: 70px !important;
+  right: -100% !important;
+  background-color: rgba(11, 11, 43, 0.95) !important;
+  z-index: 9999 !important;
+  transition: right 0.3s ease !important;
+  width: 100% !important;
+  padding: 2rem 0 !important;
+  flex-direction: column !important;
+}
+
+.nav-menu.active {
+  right: 0 !important;
+  display: flex !important;
+}
+
+.menu-overlay {
+  z-index: 9000 !important;
+}
+
+.mobile-menu-btn {
+  display: block !important;
+  z-index: 9999 !important;
+  background-color: rgba(255, 102, 0, 0.2) !important;
+  padding: 5px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+}
+			/* 見出しの中央寄せ修正 */
+.main-title, .tagline, .main-slogan {
+    width: 100% !important;
+    text-align: center !important;
+    left: 0 !important;
+    transform: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+        /* 要素表示強制 */
+        .main-title, .tagline, .main-slogan, .vision-statement, .character, .logo {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative;
+            z-index: 20 !important;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* キャラクターとロゴ修正 */
+        .character-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .character {
+            height: auto;
+            width: 80%;
+            max-width: 500px;
+            max-height: 75%;
+            object-fit: contain;
+            z-index: 3;
+        }
+
+        .logo {
+            width: 80%;
+            max-width: 300px;
+            z-index: 4;
+        }
+
+        /* ヘッダー部分の構造修正 */
+        .header {
+            padding-top: 80px; /* ナビゲーションバーの下に適切なスペース */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* メニュー修正 */
+        .menu-overlay {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* モバイルメニュー改善 */
+        .nav-menu {
+            transition: right 0.3s ease-in-out;
+        }
+
+        .nav-menu.active {
+            right: 0 !important;
+            display: flex !important;
+        }
+
+      /* ハンバーガーメニュー修正 */
+.mobile-menu-btn {
+    display: block !important;
+    z-index: 2000 !important;
+}  /* この閉じ括弧が抜けています */
+
+
+        /* 流れ星アニメーション */
+        @keyframes shooting-star {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            70% { opacity: 1; }
+            100% {
+                transform: translateX(100vw) translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+     /* 流れ星アニメーション調整 */
+.shooting-star {
+    position: fixed !important;
+    z-index: 9999 !important;
+}
+
+        /* スマホ表示調整 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background-color: rgba(11, 11, 43, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                transition: right 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                padding: 3rem 0 2rem;
+                gap: 1.5rem;
+                z-index: 999;
+                height: auto;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+                display: flex;
+            }
+
+            .character-container {
+                height: 60vh;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+                margin-top: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .main-slogan {
+                font-size: 1.3rem;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .character-container {
+                height: 50vh;
+            }
+
+            .character {
+                width: 85%;
+                max-width: 350px;
+            }
+
+            .logo {
+                width: 85%;
+                margin-top: -5rem;
+                max-width: 220px;
+            }
+
+            .main-title {
+                font-size: 1.5rem;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="fixed-container">
+    <!-- Star Background -->
+    <div class="stars-container" id="stars-container"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <img src="images/company/logo.png" alt="FunLink ロゴ" class="nav-logo">
+            <div class="nav-menu" id="nav-menu">
+                <a href="#about" class="nav-link">FunLinkとは</a>
+                <a href="#values" class="nav-link">価値観</a>
+                <a href="#declarations" class="nav-link">宣言</a>
+                <a href="#join" class="nav-link">参加する</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="メニュー">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="header" id="home">
+        <h1 class="main-title">FunLink (ファンリンク)</h1>
+        <p class="tagline">クリエイターとファンをつなぐ、確かな絆</p>
+
+        <div class="character-container">
+            <img src="images/creator/character.png" alt="FunLink キャラクター" class="character">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <img src="images/company/logo.png" alt="FunLink ロゴ" class="logo">
+            </div>
+        </div>
+
+        <h2 class="main-slogan">「キミとつながる<span class="highlight">シンセカイ</span>の実現へ」</h2>
+        <p class="vision-statement">クリエイターやフリーランスが「理不尽」な対応をされない世界を目指して</p>
+        <div class="scroll-down" id="scroll-down" role="button" tabindex="0">↓</div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="galaxy-circle galaxy-circle-1"></div>
+        <h2 class="section-title">FunLinkとは</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            FunLinkは、クリエイターとファンを結ぶプラットフォームです。<br>
+            私たちは、お互いが寄り添い、支え合う関係を通じて、<br>
+            持続可能な創作活動とコミュニティの形成を目指しています。
+        </p>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section" id="values">
+        <div class="galaxy-circle galaxy-circle-2"></div>
+        <h2 class="section-title">FunLinkが大切にする3つの価値観</h2>
+        <div class="values-container">
+            <div class="value-card" data-delay="0">
+                <span class="value-icon">★</span>
+                <h3 class="value-title">心地よい空間</h3>
+                <p>クリエイターと応援する人が、自然に寄り添い合えるあたたかな空間を目指しています。創る人が安心して活動を続けられるサポート体制、応援する人が気軽に関われる仕組み、ストレスなくつながれる心地よさを大切にしています。</p>
+            </div>
+
+            <div class="value-card" data-delay="200">
+                <span class="value-icon">✨</span>
+                <h3 class="value-title">確かな絆</h3>
+                <p>作品を通じた深い共感とつながりを大切にします。応援することの喜び、感謝される温かさがここにあります。クリエイターと応援者が互いにとって大切な存在になる関係性を育みます。一人ではなく、共に歩む関係を築きます。</p>
+            </div>
+
+            <div class="value-card" data-delay="400">
+                <span class="value-icon">⭐</span>
+                <h3 class="value-title">持続可能な創作</h3>
+                <p>好きなことを続けるための環境・仕組み・人のつながりを提供します。クリエイターの経済的基盤確立と応援者の参加を促進します。創作活動が継続できるように、収益化・プロモーションなどのサポートと、ファンコミュニティ・限定コンテンツなどの仕組みを提供します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Declarations Section -->
+    <section class="section declarations" id="declarations">
+        <h2 class="section-title">クリエイターと企業の宣言</h2>
+        <div class="creator-enterprise-container">
+            <div class="declaration-card creator-card" data-delay="0">
+                <h3>クリエイター宣言</h3>
+                <p class="declaration-intro">私たちクリエイターは、日々の創作活動を通じて社会に価値を提供しています。高いクリエイティブスキルを保ち続けるために、私たちは努力を惜しみません。</p>
+
+                <ul class="declaration-list">
+                    <li>自分の軸を持ち、輝きを放つ存在であり続けます</li>
+                    <li>独自の個性と存在感を大切にし、創造性という光を放ちます</li>
+                    <li>自分の作品に誇りを持ち、適正な対価を求める尊厳を守ります</li>
+                    <li>持続可能な創作活動とコミュニティの形成を通じた深い満足感を追求します</li>
+                    <li>応援してくれる人とともに成長し、影響を広げていきます</li>
+                </ul>
+
+                <p class="declaration-footer">このロゴを使用することは、クリエイターとしての自分の価値を認め、買いたたかれることを拒否する意思表示です。好きなことを続けるためには経済的基盤が必要であり、私たちのスキルと時間には適正な価値があることを示します。</p>
+
+                <h4 style="margin-top: 2rem;">クリエイターの範囲</h4>
+                <div class="creator-types">
+                    <span class="creator-type">音楽</span>
+                    <span class="creator-type">ダンス</span>
+                    <span class="creator-type">イラスト</span>
+                    <span class="creator-type">漫画</span>
+                    <span class="creator-type">配信活動</span>
+                    <span class="creator-type">アイドル活動</span>
+                    <span class="creator-type">WEB制作</span>
+                    <span class="creator-type">プログラミング</span>
+                    <span class="creator-type">ライティング</span>
+                    <span class="creator-type">写真・映像</span>
+                    <span class="creator-type">ハンドメイド</span>
+                    <span class="creator-type">その他創造活動</span>
+                </div>
+            </div>
+
+            <div class="declaration-card enterprise-card" data-delay="200">
+                <h3>企業宣言</h3>
+                <p class="declaration-intro">私たちは、クリエイターの時間とスキルに適正な対価を支払うことを約束します。</p>
+
+                <ul class="declaration-list enterprise-list">
+                    <li>クリエイターの創造性と独自性を尊重し、その価値を認めます</li>
+                    <li>持続可能なクリエイターエコシステムの構築に取り組みます</li>
+                    <li>誰もが平等に創作活動に参加できる環境づくりを支援します</li>
+                    <li>クリエイターとの互いに尊重し合うパートナーシップを目指します</li>
+                    <li>「誰ひとり取り残さない」創作の銀河の実現に貢献します</li>
+                </ul>
+
+                <p class="declaration-footer">このロゴを掲示することは、クリエイターを大切にする企業であることの宣言です。私たちは、クリエイターの価値を認め、適正な対価を支払うことで、より豊かな創作文化の発展に貢献します。</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- CTA Section -->
+     <section class="cta-section" id="join">
+        <div class="cta-galaxy-bg"></div>
+        <div class="cta-content">
+            <h2 class="section-title">シンセカイへの招待</h2>
+            <p>お互いが寄り添い、支え合う関係。<br>単なる一時的な楽しさではなく、持続可能な創作活動とコミュニティの形成を通じた、より深い満足感。</p>
+            <p>FunLinkは、「創る人と支える人が、もっと自然につながれる銀河」をつくります。<br>ここでは、クリエイターが活動しやすい環境と、応援する人が関わりやすい仕組みを整え、創作の可能性を広げます。</p>
+            <p>このつながりが、やがて大きな銀河を形作り、「好きなことを続けられる社会」を実現していくのです。</p>
+            <button class="cta-button">FunLinkに参加する</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/company/logo.png" alt="FunLink ロゴ" class="footer-logo">
+        <p>キミとつながるシンセカイの実現へ</p>
+
+        <div class="footer-nav">
+            <a href="#about" class="footer-link">FunLinkとは</a>
+            <a href="#values" class="footer-link">価値観</a>
+            <a href="#declarations" class="footer-link">宣言</a>
+            <a href="#join" class="footer-link">参加する</a>
+        </div>
+
+        <!-- サポートクリエイター＆企業セクション -->
+        <div class="supporters-section">
+            <h3 class="supporters-title">賛同クリエイター</h3>
+
+            <div class="creators-grid">
+                <!-- クリエイターサンプル -->
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+            </div>
+
+            <h3 class="supporters-title">賛同企業</h3>
+
+            <div class="companies-grid">
+                <!-- 企業サンプル -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <!-- 2行目 -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <p class="copyright">© 2025 FunLink - All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

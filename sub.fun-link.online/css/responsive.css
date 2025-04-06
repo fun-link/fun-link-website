@@ -1,0 +1,524 @@
+/**
+ * FunLink - responsive.css
+ * レスポンシブ対応のためのスタイルシート
+ * デバイスサイズに応じたレイアウト調整を定義します
+ */
+
+/* ====================================
+ ブレイクポイント定義
+   - デスクトップ: 1024px以上
+   - タブレット: 768px～1023px
+   - モバイル: 767px以下
+   - 小型モバイル: 480px以下
+==================================== */
+
+/* ====================================
+ レスポンシブユーティリティクラス
+==================================== */
+
+/**
+ * モバイル表示制御クラス
+ */
+ .hide-on-mobile {
+  display: block;
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+/**
+ * モバイルメニュートグル
+ */
+.mobile-menu-btn {
+  display: none;
+  background: rgba(255, 102, 0, 0.2);
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  /* タッチ操作の安定化 */
+  touch-action: manipulation;
+  user-select: none;
+  /* ボタンサイズと形状 */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  /* 重なり順序 */
+  z-index: 1001;
+  /* アニメーション */
+  transition: background-color 0.3s ease;
+}
+
+/* ホバー時の強調表示 */
+.mobile-menu-btn:hover {
+  background: rgba(255, 102, 0, 0.4);
+}
+
+/* ====================================
+ デスクトップ向けスタイル調整 (1200px以上)
+==================================== */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  .wide-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+}
+
+/* ====================================
+ タブレット向けスタイル調整 (768px～1023px)
+==================================== */
+@media (max-width: 1024px) {
+  /* タイトル調整 */
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  /* キャラクター調整 */
+  .character {
+    width: 75%;
+    max-width: 500px;
+  }
+
+  /* ロゴ位置調整 */
+  .logo {
+    margin-top: -7rem;
+  }
+ /* 企業グリッド調整 */
+ .companies-grid {
+	grid-template-columns: repeat(6, 1fr);
+}
+
+/* ビジョンステートメント */
+.vision-statement {
+	font-size: 1.1rem;
+	padding: 0.4rem 1.2rem;
+}
+}
+
+/* ====================================
+モバイル向けスタイル調整 (767px以下)
+==================================== */
+@media (max-width: 768px) {
+/* ヘッダー部分調整 */
+.header {
+	padding-top: 4rem;
+}
+
+/* キャラクターコンテナ調整 */
+.character-container {
+	height: 75vh;
+}
+
+/* キャラクター調整 */
+.character {
+	width: 85%;
+	margin-bottom: 0.5rem;
+	max-width: 400px;
+}
+
+/* ロゴ調整 */
+.logo {
+	width: 85%;
+	margin-top: -6rem;
+	max-width: 250px;
+}
+
+/* ナビゲーションメニュー（モバイル） */
+.nav-menu {
+	position: fixed;
+	top: 70px;
+	right: -100%;
+	flex-direction: column;
+	background-color: rgba(11, 11, 43, 0.95);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	width: 100%;
+	text-align: center;
+	transition: right 0.3s ease;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	padding: 3rem 0 2rem;
+	gap: 1.5rem;
+	z-index: 999;
+	height: auto;
+	max-height: 80vh;
+	overflow-y: auto;
+}
+
+/* アクティブなメニュー */
+.nav-menu.active {
+	right: 0;
+	display: flex;
+}
+
+/* メニュー内のリンク間隔調整 */
+.nav-menu.active .nav-link {
+	margin: 0.5rem 0;
+	padding: 0.5rem 1.5rem;
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+/* アクティブ時のオーバーレイ */
+body::after {
+	content: '';
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 98;
+}
+
+body.menu-active::after {
+	display: block;
+}
+
+/* モバイルメニューボタン表示 */
+.mobile-menu-btn {
+	display: flex;
+}
+
+/* タイトル調整 */
+.main-title {
+	font-size: 1.8rem;
+	margin-top: 2rem;
+}
+
+/* サブタイトル調整 */
+.tagline {
+	font-size: 1.1rem;
+}
+
+/* スローガン調整 */
+.main-slogan {
+	font-size: 1.3rem;
+	margin-top: 1rem;
+}
+
+/* ビジョンステートメント */
+.vision-statement {
+	font-size: 0.9rem;
+	padding: 0.3rem 1rem;
+	margin-top: 0.5rem;
+}
+
+/* セクションタイトル調整 */
+.section-title {
+	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 3rem;
+	position: relative;
+	display: inline-block;
+	/* 中央配置 */
+	left: 50%;
+	transform: translateX(-50%);
+	/* 幅を適切に設定 */
+	width: 90%;
+	min-width: 60%;
+}
+
+/* CTA文字サイズ調整 */
+.cta-section p {
+	font-size: 1rem;
+	padding: 0 10px;
+}
+
+/* 宣言カード調整 */
+.creator-enterprise-container {
+	grid-template-columns: 1fr;
+}
+
+.declaration-card {
+	height: auto;
+}
+
+/* クリエイターグリッド */
+.creators-grid {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+/* 企業グリッド */
+.companies-grid {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+/* ナビゲーション調整 */
+.nav {
+	padding: 0.5rem 1rem;
+}
+
+.nav-logo {
+	height: 30px;
+}
+
+/* 表示/非表示制御 */
+.hide-on-mobile {
+	display: none;
+}
+
+.show-on-mobile {
+	display: block;
+}
+}
+
+/* デスクトップでのメニュー表示調整 */
+@media (min-width: 769px) {
+.nav-menu.active {
+	width: auto;
+	min-width: 200px;
+	right: 2rem;
+	border-radius: 10px;
+	overflow: hidden;
+}
+}
+
+/* ====================================
+小型モバイル向けスタイル調整 (480px以下)
+==================================== */
+@media (max-width: 480px) {
+/* キャラクター調整 */
+.character {
+	width: 85%;
+	max-width: 350px;
+}
+
+/* ロゴ調整 */
+.logo {
+	width: 90%;
+	margin-top: -5rem;
+	max-width: 220px;
+}
+
+/* ヘッダー高さ調整 - キャラクター表示のため */
+.header {
+	height: 110vh;
+	padding-top: 4rem;
+}
+
+/* タイトル調整 */
+.main-title {
+	font-size: 1.5rem;
+	margin-top: 1rem;
+}
+
+/* スローガン調整 */
+.main-slogan {
+	margin-top: 0.5rem;
+}
+
+/* サブタイトル調整 */
+.tagline {
+	font-size: 1rem;
+}
+
+/* ビジョンステートメント */
+.vision-statement {
+	font-size: 0.8rem;
+	padding: 0.25rem 0.8rem;
+}
+
+/* カード調整 */
+.value-card {
+	padding: 1.5rem;
+}
+
+/* セクション調整 */
+.section {
+	padding: 4rem 1rem;
+}
+
+/* クリエイターグリッド */
+.creators-grid {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+/* 企業グリッド */
+.companies-grid {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+/* クリエイター画像サイズ */
+.creator-item img {
+	width: 60px;
+	height: 60px;
+}
+
+/* 企業アイテム調整 */
+.company-item {
+	padding: 0.5rem;
+}
+
+.company-item img {
+	max-height: 40px;
+}
+
+/* ボタン幅調整 */
+.btn, .cta-button {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+}
+
+/* ====================================
+横向きモバイル向けスタイル調整 (高さが低い場合)
+==================================== */
+@media (max-height: 700px) {
+.character-container {
+	height: 65vh;
+}
+
+.character {
+	max-height: 70%;
+}
+
+.logo {
+	margin-top: -4rem;
+}
+}
+
+/* ====================================
+タッチデバイス向け最適化
+==================================== */
+@media (hover: none) {
+/* タッチデバイスでのアクティブ状態 */
+a:active, button:active {
+	opacity: 0.7;
+}
+
+/* ホバー効果の無効化 */
+.value-card:hover,
+.declaration-card:hover,
+.creator-item:hover,
+.company-item:hover,
+.cta-button:hover,
+.nav-link:hover::after {
+	transform: none;
+	box-shadow: none;
+	border-color: initial;
+	width: initial;
+}
+
+/* タップ時の代替効果 */
+.tap-active {
+	transform: scale(0.98) !important;
+	transition: transform 0.1s ease-out !important;
+}
+
+/* タップターゲットサイズ最適化 */
+button,
+.btn,
+nav a,
+input[type="checkbox"],
+input[type="radio"],
+select {
+	min-height: 44px;
+	min-width: 44px;
+}
+}
+
+/* ====================================
+印刷用スタイル
+==================================== */
+@media print {
+/* 印刷時の基本スタイル */
+body {
+	font-size: 12pt;
+	line-height: 1.4;
+	color: #000;
+	background-color: #fff;
+}
+
+/* リンク表示 */
+a {
+	color: #000;
+	text-decoration: underline;
+}
+
+/* コンテナ幅 */
+.container {
+	max-width: 100%;
+	width: 100%;
+}
+
+/* 非表示要素 */
+header,
+footer,
+.nav,
+.cta-section,
+.no-print {
+	display: none;
+}
+
+/* 画像サイズ制限 */
+img {
+	max-width: 100% !important;
+}
+
+/* 改ページ制御 */
+h1, h2, h3, h4, h5, h6 {
+	page-break-after: avoid;
+	page-break-inside: avoid;
+}
+
+/* 孤立行・寡婦行の制御 */
+p, li {
+	orphans: 3;
+	widows: 3;
+}
+
+/* テーブル改ページ防止 */
+table {
+	page-break-inside: avoid;
+}
+}
+
+/* 流れ星アニメーション */
+@keyframes shooting-star {
+0% {
+	transform: translateX(0) translateY(0) rotate(45deg);
+	opacity: 0;
+}
+10% { opacity: 1; }
+70% { opacity: 1; }
+100% {
+	transform: translateX(100vw) translateY(100vh) rotate(45deg);
+	opacity: 0;
+}
+}
+
+.shooting-star {
+animation: shooting-star 2s linear forwards;
+pointer-events: none;
+}
+
+/* メニューオーバーレイ */
+.menu-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 90;
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+opacity: 1;
+visibility: visible;
+}

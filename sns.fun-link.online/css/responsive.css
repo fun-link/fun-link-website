@@ -1,0 +1,289 @@
+/* FunLink レスポンシブデザイン用スタイルシート */
+
+/* レスポンシブグリッドシステム */
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* レスポンシブユーティリティクラス */
+.hide-on-mobile {
+  display: block;
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+/* モバイルメニュートグル */
+.mobile-menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+/* メディアクエリ - PC向けレスポンシブ調整 */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+  
+  .wide-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+}
+
+/* メディアクエリ - タブレット向けレスポンシブ調整 */
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tablet-full {
+    grid-column: 1 / -1;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
+}
+
+/* メディアクエリ - モバイル向けレスポンシブ調整 */
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  nav ul {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    text-align: center;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+  }
+  
+  nav ul.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  nav ul li {
+    margin: 0;
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 15px;
+  }
+  
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hide-on-mobile {
+    display: none;
+  }
+  
+  .show-on-mobile {
+    display: block;
+  }
+  
+  .section {
+    padding: 50px 0;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .hero {
+    padding: 50px 0;
+  }
+  
+  .section-title {
+    margin-bottom: 30px;
+  }
+  
+  /* タッチ対応のためのホバー調整 */
+  .btn:hover {
+    background-color: #e74c3c;
+  }
+  
+  .btn:active {
+    background-color: #c0392b;
+  }
+}
+
+/* メディアクエリ - 小型モバイル向けレスポンシブ調整 */
+@media screen and (max-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+  
+  .grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .tablet-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-inner {
+    padding: 0 10px;
+  }
+  
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .section {
+    padding: 40px 0;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* タッチデバイス向け最適化 */
+@media (hover: none) {
+  /* タッチデバイスではホバーを無効化 */
+  .card:hover,
+  .feature-card:hover,
+  .creator-card:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* タッチデバイス向けフォーカス状態 */
+  .card:focus,
+  .feature-card:focus,
+  .creator-card:focus {
+    outline: 2px solid #e74c3c;
+  }
+  
+  /* タッチターゲットサイズの最適化 */
+  button,
+  .btn,
+  nav ul li a,
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* フォーム要素のタッチ最適化 */
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* iOSの自動ズームを防止 */
+  }
+}
+
+/* 印刷用スタイル */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000;
+    background-color: #fff;
+  }
+  
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  header,
+  footer,
+  .no-print {
+    display: none;
+  }
+  
+  img {
+    max-width: 100% !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  table {
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>fun-link-キミとつながるシンセカイの実現へ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Prevent tap highlight on iOS -->
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+/* タイトルテキストの輝きエフェクト */
+.main-title, .tagline {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                     0 0 20px rgba(138, 43, 226, 0.6),
+                     0 0 30px rgba(0, 206, 209, 0.4);
+        animation: text-glow 3s infinite alternate ease-in-out;
+        position: relative;
+        z-index: 10; /* 高い重なり順位で確実に表示されるように */
+        display: block !important; /* 常に表示されるように強制 */
+        visibility: visible !important; /* 常に可視状態を強制 */
+        opacity: 1 !important; /* 常に不透明度100%を強制 */
+    }
+/* メディアクエリを修正 - すべての画面サイズで適用 */
+@media (min-width: 0px) {
+        .main-title, .tagline {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        /* スマホグリッドの安定化 */
+        @media (max-width: 768px) {
+					.main-title, .tagline {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative;
+            z-index: 10;
+            margin-top: 70px; /* ナビゲーションの下に確実に表示 */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1),
+                         0 0 20px rgba(138, 43, 226, 0.8),
+                         0 0 30px rgba(0, 206, 209, 0.6);
+        }
+
+        .character-container {
+            margin-top: 20px; /* タイトルとの間隔を確保 */
+            max-height: 50vh; /* 高さを制限してキャラクターが大きくなりすぎないように */
+        }
+            .creators-grid, .companies-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                grid-auto-rows: auto;
+                contain: layout style;
+            }
+            .creator-item, .company-item {
+                contain: layout style;
+                height: auto;
+                transition: transform 0.2s ease;
+                transform: translate3d(0,0,0);
+            }
+        }
+
+      /* シンセカイのテキストのためのスタイル追加 */
+ /* シンセカイのテキストのためのスタイル追加 */
+.main-slogan {
+    margin-top: 12rem;  /* 8remからさらに増加 */
+    margin-bottom: 3rem; /* 8remから減少させて上下バランスを調整 */
+    position: relative;
+    z-index: 5;
+}
+
+		.main-slogan .highlight {
+        position: relative;
+        color: #fff;
+        font-weight: 700;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                    0 0 30px rgba(138, 43, 226, 0.9),
+                    0 0 45px rgba(0, 206, 209, 0.8);
+        animation: text-glow 3s infinite alternate ease-in-out;
+    }
+/* キラキラエフェクトのアニメーション強化 */
+@keyframes text-glow {
+        0% {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(138, 43, 226, 0.6),
+                         0 0 30px rgba(0, 206, 209, 0.4);
+        }
+        50% {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                         0 0 30px rgba(138, 43, 226, 0.9),
+                         0 0 45px rgba(0, 206, 209, 0.7);
+        }
+        100% {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(138, 43, 226, 0.6),
+                         0 0 30px rgba(0, 206, 209, 0.4);
+        }
+    }
+ /* キラキラスターエフェクト追加 */
+ .title-star {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/></svg>");
+        background-size: contain;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9;
+        animation: star-twinkle 3s infinite ease-in-out;
+    }
+		@keyframes star-twinkle {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 0.9; transform: scale(1.2); }
+        100% { opacity: 0; transform: scale(0.5); }
+    }
+        /* キャラクターコンテナの高さ調整 */
+        .character-container {
+            height: 65vh;
+        }
+
+        @media (max-width: 768px) {
+            .character-container {
+                height: 60vh;
+            }
+
+            .main-slogan {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .character-container {
+                height: 55vh;
+            }
+        }
+ /* ヘッダー調整を追加 */
+ .header {
+        padding-top: 5rem; /* 上部の余白を増加 */
+    }
+    </style>
+</head>
+<body class="fixed-container">
+    <!-- Star Background -->
+    <div class="stars-container" id="stars-container"></div>
+
+    <!-- Navigation -->
+		<nav class="nav" id="navbar">
+			<div class="nav-container"> <!-- 新しく追加するdiv -->
+					<img src="images/company/logo.png" alt="FunLink ロゴ" class="nav-logo">
+					<div class="nav-menu" id="nav-menu">
+							<a href="#about" class="nav-link">FunLinkとは</a>
+							<a href="#values" class="nav-link">価値観</a>
+							<a href="#declarations" class="nav-link">宣言</a>
+							<a href="#join" class="nav-link">参加する</a>
+					</div>
+					<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="メニュー">☰</button>
+			</div>
+	</nav>
+
+    <!-- Hero Section -->
+    <header class="header" id="home">
+        <h1 class="main-title">FunLink (ファンリンク)</h1>
+        <p class="tagline">クリエイターとファンをつなぐ、確かな絆</p>
+
+        <div class="character-container">
+            <img src="images/creator/character.png" alt="FunLink キャラクター" class="character">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <img src="images/company/logo.png" alt="FunLink ロゴ" class="logo">
+                <!-- キラキラエフェクト用の要素 (スクリプトで動的に生成) -->
+            </div>
+        </div>
+
+        <h2 class="main-slogan">「キミとつながる<span class="highlight">シンセカイ</span>の実現へ」</h2>
+				<!-- 以下を追加 -->
+    <p class="vision-statement">クリエイターやフリーランスが「理不尽」な対応をされない世界を目指して</p>
+    <!-- 追加ここまで -->
+        <div class="scroll-down" id="scroll-down" role="button" tabindex="0">↓</div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="galaxy-circle galaxy-circle-1"></div>
+        <h2 class="section-title">FunLinkとは</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            FunLinkは、クリエイターとファンを結ぶプラットフォームです。<br>
+            私たちは、お互いが寄り添い、支え合う関係を通じて、<br>
+            持続可能な創作活動とコミュニティの形成を目指しています。
+        </p>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section" id="values">
+        <div class="galaxy-circle galaxy-circle-2"></div>
+        <h2 class="section-title">FunLinkが大切にする3つの価値観</h2>
+        <div class="values-container">
+            <div class="value-card" data-delay="0">
+                <span class="value-icon">★</span>
+                <h3 class="value-title">心地よい空間</h3>
+                <p>クリエイターと応援する人が、自然に寄り添い合えるあたたかな空間を目指しています。創る人が安心して活動を続けられるサポート体制、応援する人が気軽に関われる仕組み、ストレスなくつながれる心地よさを大切にしています。</p>
+            </div>
+
+            <div class="value-card" data-delay="200">
+                <span class="value-icon">✨</span>
+                <h3 class="value-title">確かな絆</h3>
+                <p>作品を通じた深い共感とつながりを大切にします。応援することの喜び、感謝される温かさがここにあります。クリエイターと応援者が互いにとって大切な存在になる関係性を育みます。一人ではなく、共に歩む関係を築きます。</p>
+            </div>
+
+            <div class="value-card" data-delay="400">
+                <span class="value-icon">⭐</span>
+                <h3 class="value-title">持続可能な創作</h3>
+                <p>好きなことを続けるための環境・仕組み・人のつながりを提供します。クリエイターの経済的基盤確立と応援者の参加を促進します。創作活動が継続できるように、収益化・プロモーションなどのサポートと、ファンコミュニティ・限定コンテンツなどの仕組みを提供します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Declarations Section -->
+    <section class="section declarations" id="declarations">
+        <h2 class="section-title">クリエイターと企業の宣言</h2>
+        <div class="creator-enterprise-container">
+            <div class="declaration-card creator-card" data-delay="0">
+                <h3>クリエイター宣言</h3>
+                <p class="declaration-intro">私たちクリエイターは、日々の創作活動を通じて社会に価値を提供しています。高いクリエイティブスキルを保ち続けるために、私たちは努力を惜しみません。</p>
+
+                <ul class="declaration-list">
+                    <li>自分の軸を持ち、輝きを放つ存在であり続けます</li>
+                    <li>独自の個性と存在感を大切にし、創造性という光を放ちます</li>
+                    <li>自分の作品に誇りを持ち、適正な対価を求める尊厳を守ります</li>
+                    <li>持続可能な創作活動とコミュニティの形成を通じた深い満足感を追求します</li>
+                    <li>応援してくれる人とともに成長し、影響を広げていきます</li>
+                </ul>
+
+                <p class="declaration-footer">このロゴを使用することは、クリエイターとしての自分の価値を認め、買いたたかれることを拒否する意思表示です。好きなことを続けるためには経済的基盤が必要であり、私たちのスキルと時間には適正な価値があることを示します。</p>
+
+                <h4 style="margin-top: 2rem;">クリエイターの範囲</h4>
+                <div class="creator-types">
+                    <span class="creator-type">音楽</span>
+                    <span class="creator-type">ダンス</span>
+                    <span class="creator-type">イラスト</span>
+                    <span class="creator-type">漫画</span>
+                    <span class="creator-type">配信活動</span>
+                    <span class="creator-type">アイドル活動</span>
+                    <span class="creator-type">WEB制作</span>
+                    <span class="creator-type">プログラミング</span>
+                    <span class="creator-type">ライティング</span>
+                    <span class="creator-type">写真・映像</span>
+                    <span class="creator-type">ハンドメイド</span>
+                    <span class="creator-type">その他創造活動</span>
+                </div>
+            </div>
+
+            <div class="declaration-card enterprise-card" data-delay="200">
+                <h3>企業宣言</h3>
+                <p class="declaration-intro">私たちは、クリエイターの時間とスキルに適正な対価を支払うことを約束します。</p>
+
+                <ul class="declaration-list enterprise-list">
+                    <li>クリエイターの創造性と独自性を尊重し、その価値を認めます</li>
+                    <li>持続可能なクリエイターエコシステムの構築に取り組みます</li>
+                    <li>誰もが平等に創作活動に参加できる環境づくりを支援します</li>
+                    <li>クリエイターとの互いに尊重し合うパートナーシップを目指します</li>
+                    <li>「誰ひとり取り残さない」創作の銀河の実現に貢献します</li>
+                </ul>
+
+                <p class="declaration-footer">このロゴを掲示することは、クリエイターを大切にする企業であることの宣言です。私たちは、クリエイターの価値を認め、適正な対価を支払うことで、より豊かな創作文化の発展に貢献します。</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- CTA Section - テキスト中央配置修正 -->
+		 <section class="cta-section" id="join">
+			<div class="cta-galaxy-bg"></div>
+			<div class="cta-content">
+					<h2 class="section-title">シンセカイへの招待</h2>
+					<p>お互いが寄り添い、支え合う関係。<br>単なる一時的な楽しさではなく、持続可能な創作活動とコミュニティの形成を通じた、より深い満足感。</p>
+					<p>FunLinkは、「創る人と支える人が、もっと自然につながれる銀河」をつくります。<br>ここでは、クリエイターが活動しやすい環境と、応援する人が関わりやすい仕組みを整え、創作の可能性を広げます。</p>
+					<p>このつながりが、やがて大きな銀河を形作り、「好きなことを続けられる社会」を実現していくのです。</p>
+					<button class="cta-button">FunLinkに参加する</button>
+			</div>
+	</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/company/logo.png" alt="FunLink ロゴ" class="footer-logo">
+        <p>キミとつながるシンセカイの実現へ</p>
+
+        <div class="footer-nav">
+            <a href="#about" class="footer-link">FunLinkとは</a>
+            <a href="#values" class="footer-link">価値観</a>
+            <a href="#declarations" class="footer-link">宣言</a>
+            <a href="#join" class="footer-link">参加する</a>
+        </div>
+
+        <!-- サポートクリエイター＆企業セクション - スマホ表示最適化 -->
+        <div class="supporters-section">
+            <h3 class="supporters-title">賛同クリエイター</h3>
+
+            <!-- 固定サイズのグリッド（タップ時の安定性向上） -->
+            <div class="creators-grid">
+                <!-- クリエイターサンプル 4x3 - 固定高さのコンテナ -->
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="サンプルクリエイター" loading="lazy">
+                    <span class="creator-name">クリエイター名</span>
+                </div>
+            </div>
+
+            <h3 class="supporters-title">賛同企業</h3>
+
+            <!-- 企業グリッド - 固定サイズで安定性向上 -->
+            <div class="companies-grid">
+                <!-- 企業サンプルを固定サイズ化 -->
+                <!-- 最初の行 -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+
+                <!-- 残りの企業アイテム - 同様に追加 -->
+                <!-- 2行目 -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+
+                <!-- 3行目 -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+
+                <!-- 4行目 -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="サンプル企業" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <p class="copyright">© 2025 FunLink - All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+		<script>
+			// キラキラ星エフェクトを追加する関数
+			function addTitleStars() {
+					const titleContainer = document.querySelector('.main-title');
+					const taglineContainer = document.querySelector('.tagline');
+
+					if (!titleContainer || !taglineContainer) return;
+
+					// 既存の星を削除（再実行時のため）
+					document.querySelectorAll('.title-star').forEach(star => star.remove());
+
+					// タイトル周りに星を追加
+					addStarsAround(titleContainer, 5);
+					addStarsAround(taglineContainer, 3);
+			}
+
+			// 指定要素の周りにランダムな星を配置
+			function addStarsAround(element, count) {
+					const rect = element.getBoundingClientRect();
+					const parentRect = element.offsetParent.getBoundingClientRect();
+
+					// 要素の相対的な位置
+					const offsetTop = rect.top - parentRect.top;
+					const offsetLeft = rect.left - parentRect.left;
+
+					for (let i = 0; i < count; i++) {
+							const star = document.createElement('div');
+							star.classList.add('title-star');
+
+							// 要素の周りにランダムな位置
+							const posX = offsetLeft + (Math.random() * (rect.width + 100)) - 50;
+							const posY = offsetTop + (Math.random() * (rect.height + 60)) - 30;
+
+							star.style.left = `${posX}px`;
+							star.style.top = `${posY}px`;
+
+							// アニメーションの遅延をランダムに
+							star.style.animationDelay = `${Math.random() * 3}s`;
+
+							// サイズもランダムに
+							const size = 10 + Math.random() * 15;
+							star.style.width = `${size}px`;
+							star.style.height = `${size}px`;
+
+							element.offsetParent.appendChild(star);
+					}
+			}
+
+			// DOMロード時に実行
+			document.addEventListener('DOMContentLoaded', function() {
+					// 既存の初期化コードの後に追加
+					setTimeout(addTitleStars, 1000); // 1秒後に実行（他の要素の初期化後）
+
+					// 画面サイズが変わったら再配置
+					window.addEventListener('resize', function() {
+							setTimeout(addTitleStars, 500);
+					});
+			});
+			</script>
+</body>
+</html>

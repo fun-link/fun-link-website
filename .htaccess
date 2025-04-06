@@ -1,0 +1,6 @@
+#wwwなしで統一するかつhttpsにリダイレクト設定をする場合
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [R=301,L]

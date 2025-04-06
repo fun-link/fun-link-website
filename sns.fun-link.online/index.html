@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunLink - クリエイター支援プラットフォーム</title>
+  <meta name="description" content="FunLinkは、クリエイターの活動を支援するプラットフォームです。誰でも簡単に作品を共有し、ファンとつながることができます。">
+  
+  <!-- スタイルシート -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">Fun<span>Link</span></div>
+        
+        <!-- モバイルメニュートグル -->
+        <div class="mobile-menu-toggle" aria-expanded="false" aria-label="メニュー">&#9776;</div>
+        
+        <!-- ナビゲーション -->
+        <nav>
+          <ul>
+            <li><a href="#features">特徴</a></li>
+            <li><a href="#creators">クリエイター</a></li>
+            <li><a href="#how-it-works">使い方</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+            <li><a href="#signup" class="btn">登録する</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="animated fade-in">クリエイターの可能性を広げる</h1>
+      <p class="animated fade-in delay-200">FunLinkは、あなたの創作活動をサポートし、ファンとの繋がりを深めるプラットフォームです。誰もが自分らしく表現できる場所を提供します。</p>
+      <a href="#signup" class="btn animated fade-in delay-400">今すぐ始める</a>
+    </div>
+  </section>
+  
+  <!-- 特徴セクション -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>FunLinkの特徴</h2>
+        <p>誰ひとり取り残さない創作の舞台へ</p>
+      </div>
+      
+      <div class="features">
+        <div class="feature-card animate-on-scroll" data-animation="slide-up">
+          <div class="feature-icon">🎨</div>
+          <h3>作品共有</h3>
+          <p>イラスト、音楽、小説など、あらゆるジャンルの作品を簡単に共有できます。直感的なインターフェースで、作品のアップロードからプロフィール作成まで簡単に行えます。</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll" data-animation="slide-up" data-delay="0.2">
+          <div class="feature-icon">👥</div>
+          <h3>コミュニティ</h3>
+          <p>同じ趣味や興味を持つクリエイターやファンとつながりましょう。コメント、いいね、シェア機能で交流を深め、創作の輪を広げることができます。</p>
+        </div>
+        
+        <div class="feature-card animate-on-scroll" data-animation="slide-up" data-delay="0.4">
+          <div class="feature-icon">💡</div>
+          <h3>成長支援</h3>
+          <p>詳細な分析ツールで作品の反響を確認。ファンからのフィードバックを受け取り、クリエイターとしてのスキルアップをサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- クリエイターショーケース -->
+  <section id="creators" class="section" style="background-color: #f5f5f5;">
+    <div class="container">
+      <div class="section-title">
+        <h2>人気クリエイター</h2>
+        <p>FunLinkで活躍するクリエイターたち</p>
+      </div>
+      
+      <div class="creators-showcase">
+        <div class="creator-card animate-on-scroll" data-animation="fade">
+          <img src="images/creator/sample-creator.png" alt="クリエイター1" class="creator-image">
+          <div class="creator-info">
+            <h3>山田太郎</h3>
+            <p>イラストレーター</p>
+          </div>
+        </div>
+        
+        <div class="creator-card animate-on-scroll" data-animation="fade" data-delay="0.1">
+          <img src="images/creator/sample-creator.png" alt="クリエイター2" class="creator-image">
+          <div class="creator-info">
+            <h3>佐藤花子</h3>
+            <p>音楽家</p>
+          </div>
+        </div>
+        
+        <div class="creator-card animate-on-scroll" data-animation="fade" data-delay="0.2">
+          <img src="images/creator/sample-creator.png" alt="クリエイター3" class="creator-image">
+          <div class="creator-info">
+            <h3>鈴木一郎</h3>
+            <p>小説家</p>
+          </div>
+        </div>
+        
+        <div class="creator-card animate-on-scroll" data-animation="fade" data-delay="0.3">
+          <img src="images/creator/sample-creator.png" alt="クリエイター4" class="creator-image">
+          <div class="creator-info">
+            <h3>高橋みき</h3>
+            <p>写真家</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 使い方セクション -->
+  <section id="how-it-works" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>FunLinkの使い方</h2>
+        <p>3ステップで簡単に始められます</p>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="step animate-on-scroll" data-animation="slide-right">
+          <div class="step-number">1</div>
+          <h3>アカウント作成</h3>
+          <p>簡単な登録フォームに必要事項を入力するだけで、すぐに始められます。メールアドレスとパスワードだけで登録完了です。</p>
+        </div>
+        
+        <div class="step animate-on-scroll" data-animation="slide-right" data-delay="0.2">
+          <div class="step-number">2</div>
+          <h3>プロフィール設定</h3>
+          <p>あなたの創作活動を紹介するプロフィールを作成しましょう。プロフィール画像、カバー画像、自己紹介文を設定できます。</p>
+        </div>
+        
+        <div class="step animate-on-scroll" data-animation="slide-right" data-delay="0.4">
+          <div class="step-number">3</div>
+          <h3>作品投稿</h3>
+          <p>イラスト、音楽、小説など、あなたの作品をアップロードしましょう。タグ付けやカテゴリ分けで、より多くの人に見つけてもらえます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- お問い合わせセクション -->
+  <section id="contact" class="section" style="background-color: #f5f5f5;">
+    <div class="container">
+      <div class="section-title">
+        <h2>お問い合わせ</h2>
+        <p>ご質問やご意見があれば、お気軽にお問い合わせください</p>
+      </div>
+      
+      <form action="#" method="POST" data-validate>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="name">お名前</label>
+            <input type="text" id="name" name="name" required data-error-message="お名前を入力してください">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">メールアドレス</label>
+            <input type="email" id="email" name="email" required data-error-message="有効なメールアドレスを入力してください">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">件名</label>
+          <input type="text" id="subject" name="subject" required data-error-message="件名を入力してください">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">メッセージ</label>
+          <textarea id="message" name="message" rows="5" required data-error-message="メッセージを入力してください"></textarea>
+        </div>
+        
+        <button type="submit" class="btn">送信する</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- 登録セクション -->
+  <section id="signup" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>今すぐ始めましょう</h2>
+        <p>FunLinkで、あなたの創作活動を次のレベルへ</p>
+      </div>
+      
+      <div class="cta-box animate-on-scroll" data-animation="scale">
+        <h3>無料登録で、全ての機能を利用できます</h3>
+        <p>クリエイターとしての可能性を最大限に引き出しましょう。今すぐFunLinkに参加して、あなたの作品を世界に発信しませんか？</p>
+        <a href="#" class="btn">無料で登録する</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- フッター -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>FunLink</h3>
+          <p>クリエイターの可能性を広げるプラットフォーム</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>サイトマップ</h3>
+          <ul>
+            <li><a href="#features">特徴</a></li>
+            <li><a href="#creators">クリエイター</a></li>
+            <li><a href="#how-it-works">使い方</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>サポート</h3>
+          <ul>
+            <li><a href="#">ヘルプセンター</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>お問い合わせ</h3>
+          <ul>
+            <li>メール: info@funlink.example.com</li>
+            <li>電話: 03-1234-5678</li>
+            <li>東京都渋谷区xxxx</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 FunLink All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
+</body>
+</html>

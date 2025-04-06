@@ -1,0 +1,264 @@
+/**
+ * FunLink - animations.css
+ * アニメーション定義とキーフレームを管理するスタイルシート
+ */
+
+/* ====================================
+ Animation Keyframes - アニメーションの定義
+==================================== */
+
+/**
+ * 上下の浮遊アニメーション
+ * キャラクターなどの要素をゆっくりと上下に動かす
+ */
+ @keyframes float {
+	0% { transform: translateY(0px); }
+	50% { transform: translateY(-20px); }
+	100% { transform: translateY(0px); }
+}
+
+/**
+ * 穏やかな回転アニメーション
+ * キャラクターなどの要素をわずかに左右に回転させる
+ */
+@keyframes gentle-rotate {
+	0% { transform: rotate(-1deg); }
+	50% { transform: rotate(1deg); }
+	100% { transform: rotate(-1deg); }
+}
+
+/**
+ * ロゴ浮遊アニメーション
+ * ロゴを上下に動かしながら微妙にサイズも変化させる
+ */
+@keyframes float-logo {
+	0% { transform: translateY(0px) scale(1); }
+	50% { transform: translateY(-15px) scale(1.05); }
+	100% { transform: translateY(0px) scale(1); }
+}
+
+/**
+ * 明滅アニメーション
+ * 星などの要素の透明度を周期的に変化させる
+ */
+@keyframes twinkle {
+	0% { opacity: 0.4; }
+	50% { opacity: 1; }
+	100% { opacity: 0.4; }
+}
+
+/**
+ * 下から上へのスライドアニメーション
+ * 要素が下から上へスライドしながら表示される
+ */
+@keyframes slide-up {
+	0% {
+		transform: translateY(50px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+/**
+ * 輝きエフェクトアニメーション
+ * 要素の周りに光るエフェクトを表示する
+ */
+@keyframes glow {
+	0% {
+		box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.3),
+							 0 0 40px 10px rgba(138, 43, 226, 0.2),
+							 0 0 60px 15px rgba(0, 206, 209, 0.1);
+		opacity: 0.7;
+	}
+	100% {
+		box-shadow: 0 0 30px 8px rgba(255, 255, 255, 0.4),
+							 0 0 50px 15px rgba(138, 43, 226, 0.3),
+							 0 0 70px 20px rgba(0, 206, 209, 0.2);
+		opacity: 0.9;
+	}
+}
+
+/**
+ * キラキラエフェクトアニメーション
+ * キラキラした星のようなエフェクトを表示する
+ */
+@keyframes sparkle {
+	0% { transform: scale(0); opacity: 0; }
+	50% { transform: scale(1.5); opacity: 1; }
+	100% { transform: scale(0); opacity: 0; }
+}
+
+/**
+ * テキストの輝きエフェクト
+ */
+@keyframes text-glow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                     0 0 20px rgba(138, 43, 226, 0.6),
+                     0 0 30px rgba(0, 206, 209, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                     0 0 30px rgba(138, 43, 226, 0.9),
+                     0 0 45px rgba(0, 206, 209, 0.7);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                     0 0 20px rgba(138, 43, 226, 0.6),
+                     0 0 30px rgba(0, 206, 209, 0.4);
+    }
+}
+
+/**
+ * パルスアニメーション
+ * 要素を一瞬拡大・縮小
+ */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/**
+ * 流れ星アニメーション
+ */
+@keyframes shooting-star {
+    0% {
+        transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    70% { opacity: 1; }
+    100% {
+        transform: translateX(100vw) translateY(100vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* ====================================
+ Animation Classes - アニメーションクラス
+==================================== */
+
+/**
+ * 上下浮遊クラス
+ */
+.floating {
+  animation: float 6s infinite ease-in-out;
+}
+
+/**
+ * 穏やかな回転クラス
+ */
+.gentle-rotating {
+  animation: gentle-rotate 8s infinite ease-in-out;
+}
+
+/**
+ * 明滅クラス
+ */
+.twinkling {
+	animation: twinkle var(--twinkle-duration, 3s) infinite ease-in-out;
+	animation-delay: var(--twinkle-delay, 0s);
+}
+
+/**
+ * 下から上へスライドクラス
+ */
+.slide-up {
+  animation: slide-up 0.8s ease forwards;
+}
+
+/**
+ * 輝きエフェクトクラス
+ */
+.glowing {
+  animation: glow 3s infinite alternate ease-in-out;
+}
+
+/**
+ * キラキラエフェクトクラス
+ */
+.sparkling {
+  animation: sparkle 2s infinite ease-in-out;
+}
+
+/**
+ * テキスト輝きクラス
+ */
+.text-glowing {
+    animation: text-glow 3s infinite alternate ease-in-out;
+}
+
+/**
+ * パルスクラス
+ */
+.pulse {
+    animation: pulse 0.7s ease-in-out;
+}
+
+/**
+ * 流れ星クラス
+ */
+.shooting-star {
+    animation: shooting-star 2s linear forwards;
+}
+
+/* ====================================
+ Animation Utilities - アニメーションユーティリティ
+==================================== */
+
+/**
+ * アニメーション遅延クラス
+ */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-1000 { animation-delay: 1s; }
+
+/**
+ * アニメーション持続時間クラス
+ */
+.duration-300 { animation-duration: 0.3s; }
+.duration-500 { animation-duration: 0.5s; }
+.duration-1000 { animation-duration: 1s; }
+.duration-2000 { animation-duration: 2s; }
+.duration-3000 { animation-duration: 3s; }
+
+/**
+ * アニメーションイージングクラス
+ */
+.ease-in { animation-timing-function: ease-in; }
+.ease-out { animation-timing-function: ease-out; }
+.ease-in-out { animation-timing-function: ease-in-out; }
+.linear { animation-timing-function: linear; }
+
+/**
+ * アニメーション繰り返しクラス
+ */
+.infinite { animation-iteration-count: infinite; }
+.once { animation-iteration-count: 1; }
+
+/**
+ * アニメーション方向クラス
+ */
+.alternate { animation-direction: alternate; }
+.reverse { animation-direction: reverse; }
+.alternate-reverse { animation-direction: alternate-reverse; }
+
+/**
+ * アニメーション停止クラス
+ */
+.paused { animation-play-state: paused; }
+.running { animation-play-state: running; }
+
+/**
+ * アニメーション終了状態クラス
+ */
+.forwards { animation-fill-mode: forwards; }
+.backwards { animation-fill-mode: backwards; }
+.both { animation-fill-mode: both; }

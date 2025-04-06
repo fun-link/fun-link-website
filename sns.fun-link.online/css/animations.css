@@ -1,0 +1,287 @@
+/* FunLink アニメーションスタイルシート */
+
+/* フェードイン */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* 上からスライドイン */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-from-top {
+  animation: slideInFromTop 0.6s ease forwards;
+}
+
+/* 下からスライドイン */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-from-bottom {
+  animation: slideInFromBottom 0.6s ease forwards;
+}
+
+/* 左からスライドイン */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-from-left {
+  animation: slideInFromLeft 0.6s ease forwards;
+}
+
+/* 右からスライドイン */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-from-right {
+  animation: slideInFromRight 0.6s ease forwards;
+}
+
+/* 拡大表示 */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.scale-up {
+  animation: scaleUp 0.5s ease forwards;
+}
+
+/* 縮小表示 */
+@keyframes scaleDown {
+  from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.scale-down {
+  animation: scaleDown 0.5s ease forwards;
+}
+
+/* 回転アニメーション */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 2s linear infinite;
+}
+
+/* パルスアニメーション */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease infinite;
+}
+
+/* シェイクアニメーション */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.shake {
+  animation: shake 0.8s ease;
+}
+
+/* フリップアニメーション */
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(0);
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+.flip {
+  animation: flip 1s ease;
+  backface-visibility: visible;
+}
+
+/* バウンスアニメーション */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounce 1s ease;
+}
+
+/* アニメーション遅延クラス */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* アニメーション速度クラス */
+.duration-300 {
+  animation-duration: 0.3s;
+}
+
+.duration-500 {
+  animation-duration: 0.5s;
+}
+
+.duration-700 {
+  animation-duration: 0.7s;
+}
+
+.duration-1000 {
+  animation-duration: 1s;
+}
+
+/* スクロールアニメーション用 */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+}
+
+.animate-on-scroll[data-animation="fade"] {
+  opacity: 0;
+}
+
+.animate-on-scroll[data-animation="fade"].visible {
+  opacity: 1;
+}
+
+.animate-on-scroll[data-animation="slide-up"] {
+  transform: translateY(50px);
+}
+
+.animate-on-scroll[data-animation="slide-up"].visible {
+  transform: translateY(0);
+}
+
+.animate-on-scroll[data-animation="slide-down"] {
+  transform: translateY(-50px);
+}
+
+.animate-on-scroll[data-animation="slide-down"].visible {
+  transform: translateY(0);
+}
+
+.animate-on-scroll[data-animation="slide-left"] {
+  transform: translateX(50px);
+}
+
+.animate-on-scroll[data-animation="slide-left"].visible {
+  transform: translateX(0);
+}
+
+.animate-on-scroll[data-animation="slide-right"] {
+  transform: translateX(-50px);
+}
+
+.animate-on-scroll[data-animation="slide-right"].visible {
+  transform: translateX(0);
+}
+
+.animate-on-scroll[data-animation="scale"] {
+  transform: scale(0.8);
+}
+
+.animate-on-scroll[data-animation="scale"].visible {
+  transform: scale(1);
+}
