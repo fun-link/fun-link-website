@@ -1,0 +1,24 @@
+/* 下部コンテンツが表示されるための修正 */
+body, html {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+main, .content, section, article, div {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+}
+
+/* スクロールが効くようにする */
+html, body {
+  overflow-y: auto !important;
+}
+
+/* キャラクターセクションの位置調整 */
+.character-wrapper, .hero-section {
+  position: relative !important;
+  z-index: 1 !important;
+  overflow: visible !important;
+}
