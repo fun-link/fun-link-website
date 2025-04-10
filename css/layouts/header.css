@@ -1,0 +1,40 @@
+@keyframes float-logo {
+.nav {
+.nav-container { /* 新しく追加するクラス */
+.nav.scrolled {
+.nav-logo {
+.nav-menu {
+.nav-link {
+.nav-link:hover {
+.nav-link::after {
+.nav-link:hover::after {
+.header {
+.logo-container {
+.logo-glow {
+.logo {
+    animation: float-logo 8s infinite ease-in-out;
+.logo-sparkle {
+.footer-logo {
+.footer-nav {
+	.logo {
+  .header {
+  .nav {
+	.nav-container {
+  .nav-logo {
+  .nav-menu {
+  .nav-menu.active {
+  .logo {
+	.logo {
+	.header {
+	.logo {
+.nav-menu {
+a, button, .nav-link, .creator-item, .company-item, .value-card, .declaration-card, .cta-button {
+.nav-container {
+.nav-logo {
+.nav-menu {
+.nav-link {
+.nav-link:hover {
+  .nav-container {
+  .nav-menu {
+  .nav-menu.active {
+  .nav-link {

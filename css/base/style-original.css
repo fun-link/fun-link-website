@@ -1,0 +1,1416 @@
+/* ====================================
+   Global Variables
+==================================== */
+:root {
+	--main-color: #0B0B2B;
+	--accent-color: #ff6600;
+	--secondary-color: #8A2BE2;
+	--tertiary-color: #00CED1;
+	--text-color: #FFFFFF;
+	--text-light: #F0F0F0;
+	--card-bg: rgba(255, 255, 255, 0.05);
+	--gradient-dark: linear-gradient(to bottom, #0B0B2B, #000020);
+}
+
+/* ====================================
+ Animation Keyframes
+==================================== */
+@keyframes float {
+	0% { transform: translateY(0px); }
+	50% { transform: translateY(-20px); }
+	100% { transform: translateY(0px); }
+}
+
+@keyframes gentle-rotate {
+	0% { transform: rotate(-1deg); }
+	50% { transform: rotate(1deg); }
+	100% { transform: rotate(-1deg); }
+}
+
+@keyframes float-logo {
+	0% { transform: translateY(0px) scale(1); }
+	50% { transform: translateY(-15px) scale(1.05); }
+	100% { transform: translateY(0px) scale(1); }
+}
+
+@keyframes twinkle {
+	0% { opacity: 0.4; }
+	50% { opacity: 1; }
+	100% { opacity: 0.4; }
+}
+
+@keyframes slide-up {
+	0% {
+			transform: translateY(50px);
+			opacity: 0;
+	}
+	100% {
+			transform: translateY(0);
+			opacity: 1;
+	}
+}
+
+@keyframes glow {
+	0% {
+			box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.3),
+								 0 0 40px 10px rgba(138, 43, 226, 0.2),
+								 0 0 60px 15px rgba(0, 206, 209, 0.1);
+			opacity: 0.7;
+	}
+	100% {
+			box-shadow: 0 0 30px 8px rgba(255, 255, 255, 0.4),
+								 0 0 50px 15px rgba(138, 43, 226, 0.3),
+								 0 0 70px 20px rgba(0, 206, 209, 0.2);
+			opacity: 0.9;
+	}
+}
+
+@keyframes sparkle {
+	0% { transform: scale(0); opacity: 0; }
+	50% { transform: scale(1.5); opacity: 1; }
+	100% { transform: scale(0); opacity: 0; }
+}
+
+/* ====================================
+ Base Styles - タッチ操作の最適化を追加
+==================================== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	overflow-x: hidden;
+	height: 100%;
+	/* スクロールスナップを防止 */
+	scroll-snap-type: none;
+	/* iPadの慣性スクロールを無効化 */
+	-webkit-overflow-scrolling: auto;
+}
+
+body {
+	font-family: 'Noto Sans JP', sans-serif;
+	background: var(--gradient-dark);
+	color: var(--text-color);
+	line-height: 1.6;
+	overflow-x: hidden;
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+	/* タップハイライトの除去 */
+	-webkit-tap-highlight-color: transparent;
+	/* タッチ操作の最適化 */
+	touch-action: manipulation;
+}
+
+/* タッチデバイスでのアクティブ状態スタイル */
+@media (hover: none) {
+	a:active, button:active {
+		opacity: 0.7;
+	}
+
+	.value-card:hover,
+	.declaration-card:hover,
+	.creator-item:hover,
+	.company-item:hover,
+	.cta-button:hover {
+		transform: none;
+		box-shadow: none;
+	}
+}
+
+/* タッチ操作時のブレを防止するための固定要素 */
+.fixed-container {
+	position: relative;
+	backface-visibility: hidden;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+/* ====================================
+ Star Background
+==================================== */
+.stars-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none; /* タッチイベントを透過 */
+}
+
+.star {
+	position: absolute;
+	background-color: white;
+	border-radius: 50%;
+	box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.4);
+	pointer-events: none; /* タッチイベントを透過 */
+	will-change: opacity; /* アニメーション最適化 */
+}
+
+.twinkle {
+	animation: twinkle var(--twinkle-duration, 3s) infinite ease-in-out;
+	animation-delay: var(--twinkle-delay, 0s);
+}
+
+/* ====================================
+ Navigation
+==================================== */
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	background-color: rgba(11, 11, 43, 0.8);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	z-index: 100;
+	transition: all 0.3s ease;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+	padding: 0; /* パディングをコンテナに移動 */
+}
+.nav-container { /* 新しく追加するクラス */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+}
+.nav.scrolled {
+	padding: 0.5rem 2rem;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-logo {
+	height: 40px;
+	margin-right: 1rem;
+}
+
+.nav-menu {
+	display: flex;
+	gap: 2rem;
+}
+
+.nav-link {
+	color: var(--text-light);
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.3s ease;
+	position: relative;
+	/* タッチ操作時の安定性向上 */
+	touch-action: manipulation;
+	user-select: none;
+}
+
+.nav-link:hover {
+	color: var(--accent-color);
+}
+
+.nav-link::after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 2px;
+	bottom: -5px;
+	left: 0;
+	background-color: var(--accent-color);
+	transition: width 0.3s ease;
+	/* タッチ操作の安定化 */
+	will-change: width;
+}
+
+.nav-link:hover::after {
+	width: 100%;
+}
+
+.mobile-menu-btn {
+	display: none;
+	background: none;
+	border: none;
+	color: var(--text-color);
+	font-size: 1.5rem;
+	cursor: pointer;
+	/* タッチ操作の安定化 */
+	touch-action: manipulation;
+	user-select: none;
+}
+
+/* ====================================
+ Header & Hero Section
+==================================== */
+.header {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	padding: 2rem;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.main-title {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	font-weight: 700;
+	animation: slide-up 1s ease forwards;
+	opacity: 0; /* ここが問題かもしれません */
+	/* タッチ操作の安定化 */
+	will-change: transform, opacity;
+	/* 追加 */
+	display: block !important;
+	visibility: visible !important;
+}
+
+.tagline {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+	opacity: 0;
+	animation: slide-up 1s ease 0.3s forwards;
+	/* タッチ操作の安定化 */
+	will-change: transform, opacity;
+	/* 追加 */
+	display: block !important;
+	visibility: visible !important;
+}
+
+.main-slogan {
+	font-size: 1.8rem;
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+	position: relative;
+	z-index: 10;
+	font-weight: 500;
+	opacity: 0;
+	animation: slide-up 1s ease 1.2s forwards;
+	/* タッチ操作の安定化 */
+	will-change: transform, opacity;
+}
+/* ビジョンステートメントのスタイル - .main-sloganの後に追加 */
+.vision-statement {
+	font-size: 1.2rem;
+	font-weight: 500;
+	color: var(--accent-color);
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+	padding: 0.5rem 1.5rem;
+	background: rgba(11, 11, 43, 0.7);
+	border-radius: 30px;
+	border: 1px solid rgba(255, 102, 0, 0.3);
+	box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+	display: inline-block;
+	transform: translateY(0);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative;
+	z-index: 10;
+	opacity: 0;
+	animation: slide-up 1s ease 1.4s forwards;
+	will-change: transform, opacity;
+	text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+							 0 0 20px rgba(138, 43, 226, 0.6),
+							 0 0 30px rgba(0, 206, 209, 0.4);
+}
+
+@media (hover: hover) {
+	.vision-statement:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
+	}
+}
+
+/* ビジョンステートメント用パルスアニメーション */
+@keyframes pulse {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.05); }
+	100% { transform: scale(1); }
+}
+
+.pulse {
+	animation: pulse 0.7s ease-in-out;
+}
+/* キャラクターコンテナの修正 - より大きく表示 */
+.character-container {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* 高さを増加 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+    /* タッチ操作時にコンテナが動かないよう固定 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
+
+/* キャラクターの修正 - 大きくする */
+.character {
+    height: auto;
+    width: 80%; /* 90%から80%に変更 */
+    max-width: 500px; /* 600pxから500pxに縮小 */
+    max-height: 75%; /* 80%から75%に縮小 */
+    margin-bottom: 1rem;
+    z-index: 2;
+    position: relative;
+    animation: float 6s infinite ease-in-out, gentle-rotate 8s infinite ease-in-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 0.6s;
+    /* タッチ操作の安定化 - アニメーションがタップ時に乱れないよう */
+    will-change: transform;
+    touch-action: none;
+    pointer-events: none;
+		/* アスペクト比を維持 */
+    object-fit: contain;
+    will-change: transform;
+    touch-action: none;
+    pointer-events: none;
+}
+
+/* ロゴコンテナの調整 - キャラクター拡大に合わせる */
+.logo-container {
+    position: relative;
+    display: inline-block;
+    z-index: 3;
+    margin-top: 1rem; /* 新しく追加 - キャラクターとの間隔調整 */
+    /* タッチ時の安定性向上 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.logo-glow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.3),
+							0 0 40px 10px rgba(138, 43, 226, 0.2),
+							0 0 60px 15px rgba(0, 206, 209, 0.1);
+	animation: glow 3s infinite alternate ease-in-out;
+	z-index: 0;
+	/* タッチ操作の安定化 */
+	pointer-events: none;
+	will-change: box-shadow, opacity;
+}
+
+/* ロゴサイズと位置調整 */
+.logo {
+    width: 80%; /* 70%から80%に増加 */
+    max-width: 300px; /* 250pxから300pxに増加 */
+    position: relative;
+    margin-top: -8rem; /* -5remから-8remに調整 - キャラクターとの重なり調整 */
+    animation: float-logo 8s infinite ease-in-out;
+    z-index: 1;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 0.9s;
+    /* タッチ操作の安定化 */
+    will-change: transform;
+    touch-action: none;
+    pointer-events: none;
+}
+
+.logo-sparkle {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background-color: white;
+	border-radius: 50%;
+	opacity: 0;
+	z-index: 3;
+	/* タッチ操作の安定化 */
+	pointer-events: none;
+}
+
+.scroll-down {
+	position: absolute;
+    bottom: 8rem; /* 2remから8remに変更して上に移動 */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: float 2s infinite ease-in-out;
+    cursor: pointer;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-delay: 1.5s;
+    z-index: 10;
+	/* タッチ操作の安定化 */
+	will-change: transform, opacity;
+}
+
+/* ====================================
+ Sections - General
+==================================== */
+.section {
+	padding: 6rem 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	position: relative;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.section-title {
+	font-size: 2.5rem;
+	text-align: center;
+	margin-bottom: 3rem;
+	position: relative;
+	display: inline-block;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.section-title::after {
+	content: '';
+	position: absolute;
+	bottom: -15px;
+	left: 10%;
+	width: 80%;
+	height: 3px;
+	background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+	/* タッチ操作の安定化 */
+	pointer-events: none;
+}
+
+.galaxy-circle {
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(138, 43, 226, 0.2), transparent 70%);
+	filter: blur(30px);
+	z-index: -1;
+	/* タッチ操作の安定化 */
+	pointer-events: none;
+}
+
+.galaxy-circle-1 {
+	top: -100px;
+	left: -200px;
+}
+
+.galaxy-circle-2 {
+	bottom: -100px;
+	right: -200px;
+}
+
+/* ====================================
+ Values Section
+==================================== */
+.values-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 2rem;
+	margin-top: 3rem;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.value-card {
+	background-color: var(--card-bg);
+	border-radius: 20px;
+	padding: 2.5rem;
+	width: 100%;
+	max-width: 350px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	transition: transform 0.5s ease, box-shadow 0.5s ease;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	transform: translateY(50px);
+	opacity: 0;
+	/* タッチ操作の安定化 */
+	will-change: transform, opacity;
+	touch-action: pan-y;
+	user-select: none;
+}
+
+.value-card.animated {
+	animation: slide-up 0.8s ease forwards;
+}
+
+/* ホバー効果はデスクトップのみ適用 */
+@media (hover: hover) {
+	.value-card:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+}
+
+/* タッチデバイス用のアクティブ状態 */
+.value-card:active {
+	transform: translateY(0) scale(0.98);
+	transition: transform 0.2s ease;
+}
+
+.value-icon {
+	font-size: 3rem;
+	margin-bottom: 1.5rem;
+	color: var(--accent-color);
+	display: block;
+	text-align: center;
+}
+
+.value-title {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	color: var(--tertiary-color);
+	text-align: center;
+}
+
+/* ====================================
+ Declarations Section
+==================================== */
+.declarations {
+	margin-top: 8rem;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.creator-enterprise-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 3rem;
+	margin-top: 4rem;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.declaration-card {
+	background-color: var(--card-bg);
+	border-radius: 20px;
+	padding: 2.5rem;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	transform: translateY(50px);
+	opacity: 0;
+	transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+	/* タッチ操作の安定化 */
+	will-change: transform, opacity;
+	touch-action: pan-y;
+	user-select: none;
+}
+
+.declaration-card.animated {
+	animation: slide-up 0.8s ease forwards;
+}
+
+/* ホバー効果はデスクトップのみ適用 */
+@media (hover: hover) {
+	.declaration-card:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+}
+
+/* タッチデバイス用アクティブ状態 */
+.declaration-card:active {
+	transform: translateY(0) scale(0.98);
+	transition: transform 0.2s ease;
+}
+
+.declaration-card h3 {
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	position: relative;
+	display: inline-block;
+}
+
+.declaration-card h3::after {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(to right, var(--accent-color), transparent);
+}
+
+.enterprise-card h3::after {
+	background: linear-gradient(to right, var(--tertiary-color), transparent);
+}
+
+.declaration-intro {
+	margin-bottom: 2rem;
+	font-size: 1.1rem;
+}
+
+.declaration-list {
+	list-style-type: none;
+	margin: 2rem 0;
+}
+
+.declaration-list li {
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: flex-start;
+	position: relative;
+	padding-left: 1.5rem;
+}
+
+.declaration-list li::before {
+	content: '•';
+	color: var(--accent-color);
+	font-weight: bold;
+	position: absolute;
+	left: 0;
+}
+
+.enterprise-list li::before {
+	color: var(--tertiary-color);
+}
+
+.declaration-footer {
+	margin-top: 2rem;
+	font-style: italic;
+	opacity: 0.9;
+}
+
+.creator-types {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 2rem;
+}
+
+.creator-type {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 30px;
+	padding: 0.5rem 1rem;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+	/* タッチ操作安定化 */
+	touch-action: manipulation;
+	user-select: none;
+}
+
+@media (hover: hover) {
+	.creator-type:hover {
+		background-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-3px);
+	}
+}
+
+/* タッチデバイス用アクティブ状態 */
+.creator-type:active {
+	background-color: rgba(255, 255, 255, 0.3);
+	transform: translateY(0);
+}
+
+/* ====================================
+ CTA Section
+==================================== */
+.cta-section {
+	text-align: center;
+	padding: 8rem 2rem;
+	background: linear-gradient(to bottom, var(--main-color), #000);
+	position: relative;
+	overflow: hidden;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.cta-content {
+	position: relative;
+	z-index: 2;
+	max-width: 800px;
+	margin: 0 auto;
+	/* すべてのテキスト要素を中央揃え */
+	text-align: center;
+	width: 100%;
+}
+
+.cta-section p {
+	margin-bottom: 1.5rem;
+	font-size: 1.2rem;
+	opacity: 0;
+	transform: translateY(30px);
+	/* 左右の余白追加 */
+	padding: 0 15px;
+	/* 中央揃えを確実に */
+	text-align: center;
+	width: 100%;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cta-section.animated p {
+	animation: slide-up 0.8s ease forwards;
+}
+
+.cta-section p:nth-child(2) {
+	animation-delay: 0.2s;
+}
+
+.cta-section p:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+.cta-button {
+	display: inline-block;
+	padding: 1rem 2.5rem;
+	background-color: var(--accent-color);
+	color: white;
+	text-decoration: none;
+	border-radius: 50px;
+	font-weight: bold;
+	margin-top: 2rem;
+	transition: all 0.3s ease;
+	border: none;
+	cursor: pointer;
+	font-size: 1.1rem;
+	opacity: 0;
+	transform: translateY(30px);
+	/* タッチ操作の安定化 */
+	touch-action: manipulation;
+	user-select: none;
+	will-change: transform, opacity;
+	/* 中央配置を維持 */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cta-section.animated .cta-button {
+	animation: slide-up 0.8s ease 0.8s forwards;
+}
+@media (hover: hover) {
+	.cta-button:hover {
+		background-color: #FF8833;
+		transform: translateY(-3px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	}
+}
+
+/* タッチデバイス用アクティブ状態 */
+.cta-button:active {
+	background-color: #FF7722;
+	transform: translateY(1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cta-galaxy-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuZGV2L3N2Z2pzIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCI+PGRlZnM+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQwIiAvPjwvZmlsdGVyPjwvZGVmcz48cGF0aCBkPSJNMCwxMDAgQzE1MCwxNTAgMzUwLDAgNTAwLDEwMCBDNjUwLDIwMCA2NTAsMzUwIDUwMCw0MDAgQzQwMCw1MDAgMzAwLDUwMCAyMDAsNDAwIEMxMDAsMzUwIDUwLDMwMCAwLDQwMCBDLTUwLDUwMCAwLDYwMCAxMDAsNjUwIEMyMDAsNzAwIDMwMCw3MDAgNDAwLDY1MCBDNTAwLDYwMCA2MDAsNDUwIDYwMCw1MDAgQzYwMCw1NTAgNTAwLDYwMCA0MDAsNjAwIEMzMDAsNjAwIDI1MCw1NTAgMjAwLDUwMCBDMTUwLDQ1MCAxMDAsNTAwIDUwLDQ1MCBDMCw0MDAgNTAsNTAgMCwxMDAgWiIgZmlsbD0icmdiYSgxMzgsIDQzLCAyMjYsIDAuMSkiIGZpbHRlcj0idXJsKCNibHVyKSIvPjwvc3ZnPg==');
+	background-size: cover;
+	opacity: 0.3;
+	z-index: 1;
+	/* タッチ操作の安定化 */
+	pointer-events: none;
+}
+/* ====================================
+ Footer
+==================================== */
+.footer {
+	padding: 4rem 2rem;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: relative;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.footer-logo {
+	width: 150px;
+	margin-bottom: 2rem;
+}
+
+.footer-nav {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	margin: 2rem 0;
+	flex-wrap: wrap;
+}
+
+.footer-link {
+	color: var(--text-light);
+	text-decoration: none;
+	transition: color 0.3s ease;
+	/* タッチ操作の安定化 */
+	touch-action: manipulation;
+	user-select: none;
+}
+
+.footer-link:hover {
+	color: var(--accent-color);
+}
+
+.copyright {
+	margin-top: 2rem;
+	font-size: 0.9rem;
+	opacity: 0.7;
+}
+
+/* ====================================
+ Supporters Section - Footer
+==================================== */
+.supporters-section {
+	margin-top: 4rem;
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	/* タッチ操作の安定化 */
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.supporters-title {
+	font-size: 1.8rem;
+	margin: 3rem 0 1.5rem;
+	position: relative;
+	display: inline-block;
+}
+
+.supporters-title::after {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(to right, var(--accent-color), transparent);
+}
+
+/* クリエイターグリッド - 横4x縦3 */
+.creators-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+	margin-top: 2rem;
+	/* タッチ操作の安定化 */
+	will-change: transform;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.creator-item {
+	background-color: var(--card-bg);
+	padding: 1rem;
+	border-radius: 10px;
+	text-align: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	/* タッチ操作の安定化 */
+	touch-action: manipulation;
+	user-select: none;
+	will-change: transform;
+}
+
+@media (hover: hover) {
+	.creator-item:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+}
+
+/* タッチデバイス用アクティブ状態 */
+.creator-item:active {
+	transform: translateY(0) scale(0.98);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.creator-item img {
+	width: 80px; /* 60pxから80pxに変更 */
+	height: 80px; /* 60pxから80pxに変更 */
+	border-radius: 50%; /* 追加 */
+	object-fit: cover; /* 追加 */
+	margin-bottom: 0.5rem; /* 追加 */
+}
+
+.creator-name {
+	display: block;
+	font-size: 0.9rem;
+	margin-top: 0.5rem;
+}
+
+/* 企業グリッド - 横8x縦4 */
+.companies-grid {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	gap: 1rem;
+	margin-top: 2rem;
+	/* タッチ操作の安定化 */
+	will-change: transform;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+}
+
+.company-item {
+	background-color: white;
+	padding: 0.75rem;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: transform 0.3s ease;
+	/* タッチ操作の安定化 */
+	touch-action: manipulation;
+	user-select: none;
+	will-change: transform;
+}
+
+@media (hover: hover) {
+	.company-item:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	}
+}
+
+/* タッチデバイス用アクティブ状態 */
+.company-item:active {
+	transform: translateY(0) scale(0.98);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.company-item img {
+	max-width: 100%;
+	max-height: 50px;
+	object-fit: contain;
+}
+
+/* ====================================
+ Media Queries
+==================================== */
+/* レスポンシブ調整 - タブレット用 */
+@media (max-width: 1024px) {
+	.main-title {
+		font-size: 2.5rem;
+	}
+
+	.character {
+		width: 75%; /* 60%から75%に増加 */
+		max-width: 500px; /* 最大幅を設定 */
+	}
+
+	.logo {
+		margin-top: -7rem; /* タブレットでの位置調整 */
+	}
+
+	.companies-grid {
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+	.vision-statement {
+		font-size: 1.1rem;
+		padding: 0.4rem 1.2rem;
+}
+}
+
+
+
+@media (max-width: 768px) {
+  /* ヘッダー関連 */
+  .header {
+		padding-top: 70px; /* ナビゲーションバーの高さ分だけ調整 */
+		padding-bottom: 2rem;
+		height: auto;
+		min-height: 100vh;
+}
+.vision-statement {
+	font-size: 0.9rem;
+	padding: 0.3rem 1rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.5rem;
+}
+  .nav {
+    padding: 0.5rem 1rem;
+  }
+	.nav-container {
+    padding: 0.5rem 1rem;
+  }
+  .nav-logo {
+    height: 30px;
+  }
+
+  /* ナビゲーションメニュー */
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    flex-direction: column;
+    background-color: rgba(11, 11, 43, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 2rem 0;
+    gap: 1.5rem;
+    z-index: 99;
+  }
+
+  /* ナビゲーションリンクのスタイル調整 */
+  .nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  /* メインビジュアル要素 */
+  .character-container {
+		height: 50vh;
+    margin-top: 2rem; /* 追加 */
+  }
+
+  .character {
+    width: 85%;
+    margin-bottom: 0.5rem;
+    max-width: 400px;
+  }
+
+  .logo {
+    width: 85%;
+    margin-top: -6rem;
+    max-width: 250px;
+  }
+
+  /* タイトル・テキスト要素 */
+  .main-title {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    display: block; /* 追加 */
+    visibility: visible; /* 追加 */
+  }
+
+  .tagline {
+    font-size: 1.1rem;
+    display: block; /* 追加 */
+    visibility: visible; /* 追加 */
+		margin-bottom: 1rem;
+  }
+
+  .main-slogan {
+    margin-top: 1rem; /* 10remから1remに変更 */
+    margin-bottom: 1rem; /* 2remから1remに変更 */
+    font-size: 1.2rem; /* フォントサイズ調整 */
+  }
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;.creator-card,
+    transform: translateX(-50%);
+    width: 90%;
+    min-width: 60%;
+  }
+
+  /* セクション要素 */
+  .creator-enterprise-container {
+    grid-template-columns: 1fr;
+  }
+
+  .declaration-card {
+    height: auto;
+  }
+
+  .creators-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .companies-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* その他の要素 */
+  .scroll-down {
+    bottom: 6rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
+
+/* さらに小さい画面用 */
+@media (max-width: 480px) {
+	.character {
+		width: 85%; /* 70%から85%に増加 */
+		max-width: 350px; /* 小さい画面用の最大幅 */
+	}
+	.character-container {
+		max-height: 45vh !important; /* より小さくして全体を表示 */
+}
+.vision-statement {
+	font-size: 0.8rem;
+	padding: 0.25rem 0.8rem;
+	margin-bottom: 1rem;
+}
+
+	.logo {
+		width: 70%;
+		margin-top: -3.5rem;
+		max-width: 180px;
+	}
+
+	/* ヘッダー高さ調整 - キャラクターが大きくなったため */
+	.header {
+    height: auto; /* 110vhからautoに変更して高さを内容に合わせる */
+    min-height: 100vh; /* 最低限の高さを確保 */
+  }
+
+	/* メインタイトル・スローガンの調整 */
+	.main-title {
+		font-size: 1.5rem !important;
+		margin-top: 60px !important; /* 上部余白を調整 */
+}
+
+	.main-slogan {
+		margin-top: 0.5rem; /* 上部余白を減らす */
+	}
+
+	.tagline {
+		font-size: 0.9rem !important;
+}
+
+	.value-card {
+		padding: 1.5rem;
+	}
+
+	.section {
+		padding: 4rem 1rem;
+	}
+
+	.creators-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.companies-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+
+
+	/* 企業アイテムの安定性向上 */
+	.company-item {
+		padding: 0.5rem;
+	}
+
+	.company-item img {
+		max-height: 40px;
+	}
+}
+
+/* 画面の高さが短い場合（横向きモバイルなど）の対応 */
+@media (max-height: 700px) {
+	.character-container {
+		height: 65vh;
+	}
+
+	.character {
+		max-height: 70%;
+	}
+
+	.logo {
+		margin-top: -4rem;
+	}
+}
+
+/* =======================================
+ 追加: スマホでのタップ操作安定化のための特別なスタイル
+======================================= */
+
+/* タップ時のハイライトカラーを完全に無効化 */
+* {
+	-webkit-tap-highlight-color: transparent !important;
+}
+
+/* iOS Safariでのスクロールチェーンとバウンススクロールをコントロール */
+html, body {
+	position: relative;
+	overscroll-behavior: none;
+	overflow-x: hidden;
+	height: auto;
+	min-height: 100%;
+	width: 100%;
+}
+
+/* タップ後に瞬間的に適用される状態 - フィードバック目的 */
+.tap-active {
+	transform: scale(0.98) !important;
+	transition: transform 0.1s ease-out !important;
+}
+
+/* グリッドアイテムのレイアウト崩れを防止するための追加スタイル */
+.creators-grid, .companies-grid {
+	will-change: contents;
+	contain: layout;
+	transform: translateZ(0);
+}
+
+/* グリッドアイテムの高さを固定して崩れを防止 */
+.creator-item, .company-item {
+	contain: content;  /* strictからcontentに変更 */
+	height: auto;
+	transform: translateZ(0);
+}
+
+/* 固定サイズのコンテナを作成してサイズ変更を防止 */
+.company-item {
+	contain: content;
+	height: auto;
+	min-height: 70px;
+	aspect-ratio: auto;
+	overflow: visible;
+}
+
+@media (max-width: 480px) {
+	.company-item {
+		height: 60px;
+	}
+}
+
+/* ナビゲーションメニューのスワイプ操作を最適化 */
+.nav-menu {
+	overscroll-behavior: contain;
+	touch-action: pan-y;
+}
+
+/* タップ感度を最適化する追加スタイル */
+a, button, .nav-link, .creator-item, .company-item, .value-card, .declaration-card, .cta-button {
+	cursor: pointer;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+	user-select: none;
+}
+/* ナビゲーションとハンガーメニューのスタイル */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.nav-logo {
+  height: 40px;
+  z-index: 20;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* モバイル表示時のスタイル */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    flex-direction: column;
+    background: rgba(11, 11, 43, 0.95);
+    padding-top: 70px;
+    padding-left: 2rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 10;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+}
+
+/* オーバーレイ（メニュー表示時の背景） */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
