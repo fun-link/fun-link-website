@@ -1,0 +1,31 @@
+/* すべてのアニメーションを強制的に停止 */
+* {
+  animation: none !important;
+  -webkit-animation: none !important;
+  transition: none !important;
+  -webkit-transition: none !important;
+  animation-play-state: paused !important;
+  -webkit-animation-play-state: paused !important;
+}
+
+/* 点滅するテキスト要素を固定 */
+h1, h2, h3, h4, h5, h6, p, span, div, a {
+  opacity: 1 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* 特定の効果を持つ要素をターゲット */
+.glow, .pulse, .fade, .blink, .flicker,
+[class*="animate"], [class*="effect"], [class*="animation"],
+[style*="animation"], [style*="transition"] {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+/* 星の点滅を停止 */
+.star, [class*="star"] {
+  opacity: 1 !important;
+  animation: none !important;
+}

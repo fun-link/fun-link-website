@@ -1,0 +1,49 @@
+/* キャラクター周りの惑星エフェクト */
+.character-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* 回転する惑星 */
+.orbit-planet {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--color));
+  box-shadow: 0 0 10px var(--color);
+  animation: orbit var(--orbit-time) linear infinite !important;
+  z-index: 1;
+}
+
+/* 惑星1（赤色） */
+.planet-1 {
+  --color: #ff6600;
+  --orbit-time: 15s;
+  top: 50%;
+  left: 50%;
+}
+
+/* 惑星2（青色） */
+.planet-2 {
+  --color: #00ccff;
+  --orbit-time: 25s;
+  top: 50%;
+  left: 50%;
+}
+
+/* 惑星3（黄色） */
+.planet-3 {
+  --color: #ffcc00;
+  --orbit-time: 35s;
+  top: 50%;
+  left: 50%;
+}
+
+/* 公転アニメーション - アニメーションのみ許可 */
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(180px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+}
