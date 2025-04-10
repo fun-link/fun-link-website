@@ -1,0 +1,25 @@
+/* すべてのアニメーションを無効化 */
+* {
+  animation: none !important;
+  -webkit-animation: none !important;
+  animation-play-state: paused !important;
+  -webkit-animation-play-state: paused !important;
+  transition: none !important;
+  -webkit-transition: none !important;
+}
+
+/* 点滅エフェクトに関連する可能性のある特定の要素 */
+.glow, .pulse, .fade, .blink, .flicker, 
+[class*="animate"], [class*="effect"], [class*="glow"], 
+[class*="pulse"], [class*="fade"], [class*="blink"] {
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 特定のキーフレームアニメーションを無効化 */
+@keyframes pulse { 0%, 50%, 100% { opacity: 1 !important; transform: scale(1) !important; } }
+@keyframes glow { 0%, 50%, 100% { opacity: 1 !important; } }
+@keyframes fadeIn { 0%, 100% { opacity: 1 !important; } }
+@keyframes fadeOut { 0%, 100% { opacity: 1 !important; } }
+@keyframes blink { 0%, 50%, 100% { opacity: 1 !important; } }
