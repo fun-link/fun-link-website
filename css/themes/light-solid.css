@@ -1,0 +1,15 @@
+/* 不透明な背景のオーバーライド */
+body {
+  background-color: #0b0b2b !important; /* もや効果のない単色背景 */
+}
+
+.overlay {
+  background: none !important; /* オーバーレイ効果を削除 */
+}
+
+/* フィルターと透明度の無効化 */
+* {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
