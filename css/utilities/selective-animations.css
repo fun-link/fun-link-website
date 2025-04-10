@@ -1,0 +1,63 @@
+/* 基本的にはアニメーションを無効化 */
+body > * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* キャラクター周りの銀河系と惑星のアニメーション */
+.character-container {
+  position: relative;
+  animation: none !important; /* キャラ自体は動かない */
+}
+
+/* 銀河系エフェクト */
+.galaxy {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, rgba(33, 33, 100, 0.4) 40%, rgba(11, 11, 43, 0) 70%);
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.4), 0 0 60px rgba(0, 206, 209, 0.3);
+  z-index: -1;
+  animation: rotate 60s linear infinite !important;
+}
+
+/* 惑星アニメーション */
+.planet {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: -1;
+  animation: orbit 20s linear infinite !important;
+}
+
+.planet-1 {
+  background-color: #ff6600;
+  box-shadow: 0 0 10px #ff6600;
+  animation-duration: 15s !important;
+}
+
+.planet-2 {
+  background-color: #00ccff;
+  box-shadow: 0 0 10px #00ccff;
+  animation-duration: 25s !important;
+}
+
+.planet-3 {
+  background-color: #ffcc00;
+  box-shadow: 0 0 10px #ffcc00;
+  animation-duration: 35s !important;
+}
+
+/* 回転アニメーション */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 公転アニメーション */
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}
