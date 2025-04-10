@@ -1,0 +1,16 @@
+/* 点滅効果を穏やかにするだけの最小限のCSS */
+@keyframes pulse {
+  0%, 100% { opacity: 0.9 !important; }
+  50% { opacity: 1 !important; }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.9 !important; }
+  50% { opacity: 1 !important; }
+}
+
+/* アニメーション時間を長くして緩やかに */
+.glow, .pulse, .fade, .blink, .flicker,
+[class*="animate"], [class*="effect"] {
+  animation-duration: 5s !important;
+}
