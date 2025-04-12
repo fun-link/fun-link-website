@@ -1,0 +1,122 @@
+/* レスポンシブデザイン改善CSS */
+
+/* 基本レイアウト */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* ヒーローセクション */
+.hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* メインビジュアル */
+.mascot-character, 
+.hero-character {
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-funlink,
+.hero-logo {
+  max-width: 350px;
+  margin: 2rem auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* メニュー調整 */
+.menu-toggle {
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+}
+
+.main-nav {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(0, 10, 30, 0.98);
+  padding-top: 80px;
+  z-index: 1500;
+  transition: all 0.4s ease;
+}
+
+.main-nav.active {
+  visibility: visible;
+  opacity: 1;
+  right: 0;
+}
+
+/* モバイル用スタイル */
+@media (max-width: 768px) {
+  .mascot-character, .hero-character {
+    max-width: 60%;
+  }
+
+  .logo-funlink, .hero-logo {
+    max-width: 70%;
+  }
+  
+  .hero-section {
+    padding: 4rem 1rem;
+  }
+}
+
+/* タブレット用スタイル */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mascot-character, .hero-character {
+    max-width: 40%;
+  }
+
+  .logo-funlink, .hero-logo {
+    max-width: 50%;
+  }
+}
+
+/* デスクトップ用スタイル */
+@media (min-width: 1025px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    display: flex;
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    background: none;
+    height: auto;
+    width: auto;
+    padding: 0;
+    right: 0;
+  }
+}

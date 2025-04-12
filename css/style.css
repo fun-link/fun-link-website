@@ -390,3 +390,55 @@ section {
   border-radius: 50%;
   opacity: 0.8;
 }
+
+/* メニュー表示/非表示のスタイル */
+.main-nav {
+  display: none; /* 初期状態では非表示 */
+}
+
+.main-nav.active {
+  display: block; /* activeクラスが付いたら表示 */
+  /* モバイル用のスタイル */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: rgba(0, 10, 30, 0.95);
+  padding: 80px 20px 20px;
+  z-index: 1000;
+  transition: right 0.3s ease;
+}
+
+/* メニュートグルボタンのアクティブ状態 */
+.menu-toggle.active .fa-bars {
+  display: none;
+}
+
+.menu-toggle.active:before {
+  content: "×";
+  font-size: 24px;
+  color: #fff;
+}
+
+/* モバイル用メニューの表示調整 */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* デスクトップ表示では常に表示 */
+@media (min-width: 769px) {
+  .main-nav {
+    display: flex;
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+}

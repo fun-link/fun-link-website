@@ -1,36 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // ハンバーガーメニューの動作
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainNav = document.getElementById('main-nav');
+  // メニュー要素の取得
+  const menuToggle = document.querySelector('.menu-toggle') || document.getElementById('menu-toggle');
+  const mainNav = document.querySelector('.main-nav') || document.getElementById('main-nav');
   
   if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', function() {
+    // メニュートグルクリックイベント
+    menuToggle.addEventListener('click', function(e) {
+      e.preventDefault(); // トグルボタンのみpreventDefault
+      console.log('メニューがクリックされました');
+      
+      // クラス切り替え
       mainNav.classList.toggle('active');
       menuToggle.classList.toggle('active');
     });
     
-    // メニュー項目をクリックしたらメニューを閉じる
+    // メニュー項目クリック時の処理（モバイル時）
     const menuItems = mainNav.querySelectorAll('a');
     menuItems.forEach(item => {
       item.addEventListener('click', function() {
-        mainNav.classList.remove('active');
-        menuToggle.classList.remove('active');
+        // ここではpreventDefaultを呼び出さない
+        if (window.innerWidth < 769) {
+          mainNav.classList.remove('active');
+          menuToggle.classList.remove('active');
+        }
+        // リンクは通常通り動作させる
       });
     });
+    
+    console.log('メニュースクリプト初期化完了');
+  } else {
+    console.error('メニュー要素が見つかりません', {menuToggle, mainNav});
   }
-  
-  // スムーズスクロール
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 80,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
 });
