@@ -120,3 +120,75 @@ body {
     right: 0;
   }
 }
+/* レイアウト崩れ修正のための追加スタイル */
+
+/* ヒーローセクション調整 */
+.hero-section {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* 画像とコンテンツの表示調整 */
+.mascot-character, .hero-character {
+  max-width: 280px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* コンテナのパディング調整 */
+.container {
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* セクション間のマージン調整 */
+section {
+  margin-bottom: 60px;
+  padding: 40px 0;
+  clear: both;
+}
+
+/* メニュー位置の調整 */
+.main-nav.active {
+  transform: none;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+/* セクションタイトル強化 */
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  clear: both;
+  width: 100%;
+}
+
+/* リスト表示の改善 */
+ul, ol {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* モバイル調整強化 */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  /* メニュー項目がクリックやすいように */
+  .main-nav a {
+    padding: 12px 15px;
+    display: block;
+  }
+}

@@ -1,6 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('スムーズスクロールスクリプトが読み込まれました');
   
+  // デバッグ：すべてのセクションIDを確認
+  const sections = document.querySelectorAll('section[id]');
+  console.log('ページ上のセクションID:');
+  sections.forEach(section => {
+    console.log(`- ${section.id}: ${section.className}`);
+  });
+  
+  // デバッグ：すべてのメニューリンクを確認
+  const menuLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+  console.log('メニューリンク:');
+  menuLinks.forEach(link => {
+    console.log(`- ${link.textContent.trim()}: ${link.getAttribute('href')}`);
+  });
+  
   // 全てのアンカーリンクを取得
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   
@@ -28,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 対象要素が存在する場合はスクロール
       if (targetElement) {
+        console.log(`対象要素が見つかりました: ${targetId}, クラス: ${targetElement.className}`);
         const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
         
         window.scrollTo({
@@ -47,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       } else {
-        console.warn(`対象要素が見つかりません: ${targetId}`);
+        console.error(`対象要素が見つかりません: ${targetId}`);
       }
     });
   });
