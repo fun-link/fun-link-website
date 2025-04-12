@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('スムーズスクロールスクリプトが読み込まれました');
+  
   // 全てのアンカーリンクを取得
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // リンク先のID取得
       const targetId = this.getAttribute('href');
+      console.log('クリックされたリンク先:', targetId);
       
       // IDが"#"のみの場合はトップへスクロール
       if (targetId === '#') {
@@ -28,9 +31,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
         
         window.scrollTo({
-          top: offsetTop - 80,
+          top: offsetTop - 80, // ヘッダーの高さ分調整
           behavior: 'smooth'
         });
+        
+        console.log(`${targetId}へスクロールしました`);
+        
+        // モバイル表示時はメニューを閉じる
+        if (window.innerWidth < 769) {
+          const mainNav = document.querySelector('.main-nav');
+          const menuToggle = document.querySelector('.menu-toggle');
+          if (mainNav && menuToggle) {
+            mainNav.classList.remove('active');
+            menuToggle.classList.remove('active');
+          }
+        }
+      } else {
+        console.warn(`対象要素が見つかりません: ${targetId}`);
       }
     });
   });
