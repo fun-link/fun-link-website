@@ -9,109 +9,384 @@
     --primary-blue: #00427B;
     --primary-orange: #DD6500;
     --dark-blue: #001A33;
-    --light-blue: #E6F0FF;
-    --dark-gray: #333333;
-    --light-gray: #f5f5f5;
     --space-bg: #08091E;
 }
 
 body {
-    font-family: "Noto Sans JP", sans-serif;
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: #fff;
-    margin: 0;
-    padding: 0;
     background-color: var(--space-bg);
     overflow-x: hidden;
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header Styles */
 .site-header {
     padding: 20px 0;
     background-color: rgba(0, 10, 30, 0.8);
-    position: relative;
-    z-index: 100;
 }
 
 .logo img {
     max-width: 200px;
-    height: auto;
 }
 
 .site-title {
     font-size: 1.5rem;
     margin-top: 10px;
-    color: #fff;
 }
 
 /* Hero Section */
 .hero {
     position: relative;
-    padding: 100px 0;
-    background: linear-gradient(180deg, var(--space-bg) 0%, #101136 100%);
-    overflow: hidden;
-}
-
-.hero:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.5"/></svg>');
-    background-size: 100px 100px;
-    pointer-events: none;
-}
-
-.hero-content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    padding: 80px 0;
     text-align: center;
 }
 
 .hero-image {
     position: relative;
+    margin-bottom: 40px;
+}
 
-# 星空背景を追加するJS
-mkdir -p js
-cat > js/star-background.js << 'EOL'
-// 宇宙背景の星をランダムに生成
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('section, header');
-  
-  sections.forEach(function(section) {
-    // 各セクションに20〜50個の星を追加
-    const starCount = Math.floor(Math.random() * 30) + 20;
-    
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      
-      // ランダムな位置
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      
-      // ランダムなサイズ（1〜3px）
-      const size = Math.random() * 2 + 1;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
-      
-      // ランダムな明るさ
-      star.style.opacity = (Math.random() * 0.5 + 0.5).toString();
-      
-      // ランダムなアニメーション遅延
-      star.style.animationDelay = `${Math.random() * 5}s`;
-      
-      // セクションに星を追加
-      section.appendChild(star);
+.character {
+    max-width: 300px;
+    position: relative;
+    z-index: 2;
+}
+
+.orbit-circle {
+    position: relative;
+    margin: 20px auto;
+    max-width: 300px;
+}
+
+.planet-logo {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.hero-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(221, 101, 0, 0.2);
+    border: 1px solid var(--primary-orange);
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+/* Section Styles */
+section {
+    padding: 60px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--primary-orange);
+}
+
+.section-desc {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Value Cards */
+.value-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.value-card {
+    flex: 1;
+    min-width: 280px;
+    background-color: rgba(0, 66, 123, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+    border-left: 3px solid var(--primary-blue);
+}
+
+.value-card .icon {
+    font-size: 24px;
+    color: var(--primary-orange);
+    margin-bottom: 15px;
+}
+
+.value-card h3 {
+    font-size: 1.4rem;
+    color: #00CCFF;
+    margin-bottom: 15px;
+}
+
+/* Declarations */
+.declaration {
+    background-color: rgba(0, 66, 123, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.declaration h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.declaration ul {
+    margin: 20px 0;
+    padding-left: 25px;
+}
+
+.declaration li {
+    margin-bottom: 10px;
+}
+
+.creator-types {
+    margin: 30px 0;
+}
+
+.types-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.type-tag {
+    padding: 5px 15px;
+    background-color: rgba(0, 66, 123, 0.3);
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Supporters Section */
+.creator-list, .company-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.creator-item, .company-item {
+    text-align: center;
+}
+
+.creator-avatar, .company-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Download Section */
+.download-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.download-option {
+    flex: 1;
+    min-width: 280px;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.download-option:nth-child(1) {
+    background-color: rgba(0, 66, 123, 0.2);
+}
+
+.download-option:nth-child(2) {
+    background-color: rgba(221, 101, 0, 0.2);
+}
+
+.logo-samples {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.logo-sample {
+    max-width: 180px;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary-orange);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #FF8C00;
+    transform: translateY(-2px);
+}
+
+.cta-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Footer */
+.site-footer {
+    background-color: rgba(0, 10, 30, 0.9);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Space Animation */
+.star-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .value-card, .declaration, .download-option {
+        min-width: 100%;
     }
-  });
-});
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.7rem;
+    }
+}
+
+/* ハンバーガーメニュー */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  z-index: 1001;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.main-nav {
+  display: flex;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav li {
+  margin-left: 25px;
+}
+
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.main-nav a:hover {
+  color: var(--primary-orange);
+}
+
+/* レスポンシブスタイル */
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(0, 10, 30, 0.95);
+    padding: 80px 20px 20px;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    flex-direction: column;
+  }
+  
+  .main-nav.active {
+    right: 0;
+  }
+  
+  .main-nav ul {
+    flex-direction: column;
+  }
+  
+  .main-nav li {
+    margin: 15px 0;
+  }
+}
+
+/* 星のスタイル */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+}
