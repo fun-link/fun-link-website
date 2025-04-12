@@ -1,0 +1,101 @@
+/* レイアウト修正用CSS */
+
+/* 基本的なオーバーフロー制御 */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* コンテナの幅制限 */
+.container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* メニュー固定位置の調整 */
+.main-nav.active {
+  width: 250px;
+  max-width: 80vw;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 右側メニューレイアウト調整 */
+.main-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.main-nav li {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-nav a {
+  display: block;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+}
+
+/* セクション内コンテンツ制限 */
+section {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 画像サイズの制限 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ハンバーガーメニュー改善 */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+/* メディアクエリの改善 */
+@media (max-width: 768px) {
+  body {
+    padding-right: 0 !important; /* スクロールバー分の余白削除 */
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .main-nav.active {
+    width: 250px;
+  }
+}
+
+/* スクロールバー非表示（オプション） */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
