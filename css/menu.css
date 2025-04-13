@@ -29,6 +29,24 @@
   right: 0;
 }
 
+/* 特定の要素に対して横書きを強制する */
+.main-nav.active ul {
+  display: block !important;
+  transform: rotate(0deg) !important;
+}
+
+.main-nav.active li {
+  transform: rotate(0deg) !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.main-nav.active a {
+  transform: rotate(0deg) !important;
+  text-align: center !important;
+  writing-mode: horizontal-tb !important;
+}
+
 .main-nav ul {
   padding: 0;
   margin: 0;
@@ -49,6 +67,16 @@
 
 .main-nav a:hover {
   color: #ff9900;
+}
+
+/* アニメーション調整表示を非表示にする */
+*[class*="アニメーション調整"],
+*[id*="アニメーション調整"],
+*:contains("アニメーション調整"),
+.animation-control,
+span:last-child {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 @media (min-width: 769px) {
@@ -75,4 +103,4 @@
     border-bottom: none;
     padding: 0 15px;
   }
-}
+} 

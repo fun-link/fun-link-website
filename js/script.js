@@ -2,6 +2,17 @@
  * FunLink - main script file
  * キャラクターサイズを大きくする修正を含む完全版
  */
+
+document.addEventListener('DOMContentLoaded', function() {
+	// アニメーション調整テキストを含む要素を非表示にする
+	document.querySelectorAll('*').forEach(function(element) {
+		if (element.textContent && element.textContent.includes('アニメーション調整')) {
+			element.style.display = 'none';
+			element.style.visibility = 'hidden';
+		}
+	});
+});
+
 /**
  * ビジョンステートメントを強調するアニメーション
  */
