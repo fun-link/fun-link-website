@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunLink - クリエイターとファンをつなぐ確かな絆</title>
+    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <div class="logo">
+      <img src="images/brand/logo/color/logo_funlink_RGB_color.png" alt="FunLink" width="150">
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="#about">FunLinkとは</a></li>
+        <li><a href="#values">3つの価値観</a></li>
+        <li><a href="#manifesto">クリエイター宣言</a></li>
+        <li><a href="#download">ロゴダウンロード</a></li>
+        <li><a href="#supporters">賛同者</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="images/creator/character.png" alt="FunLinkキャラクター" class="character">
+                    <div class="orbit-circle">
+                        <img src="images/brand/logo/color/logo_funlink_RGB_maru_ginga.png" alt="FunLinkロゴ" class="planet-logo">
+                    </div>
+                </div>
+                <div class="hero-text">
+                    <h2>「キミとつながるシンセカイの実現へ」</h2>
+                    <p class="tagline">クリエイターやフリーランスが「理不尽」な対応をされない世界を目指して</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">FunLinkとは</h2>
+            <p class="section-desc">FunLinkは、クリエイターとファンを結ぶプラットフォームです。</p>
+            <p>私たちは、お互いが寄り添い、支え合う関係を通じて、<br>持続可能な創作活動とコミュニティの形成を目指しています。</p>
+        </div>
+    </section>
+    
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">FunLinkが大切にする3つの価値観</h2>
+            <div class="value-cards">
+                <div class="value-card">
+                    <div class="icon">★</div>
+                    <h3>心地よい空間</h3>
+                    <p>クリエイターと応援する人が、自然に寄り添い合えるあたたかな空間を目指しています。創る人が安心して活動を続けられるサポート体制、応援する人が気軽に関われる仕組み、ストレスなくつながれる心地よさを大切にしています。</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">✨</div>
+                    <h3>確かな絆</h3>
+                    <p>作品を通じた深い共感とつながりを大切にします。応援することの喜び、感謝される温かさがここにあります。クリエイターと応援者が互いにとって大切な存在になる関係性を育みます。一人ではなく、共に歩む関係を築きます。</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">⭐</div>
+                    <h3>持続可能な創作</h3>
+                    <p>好きなことを続けるための環境・仕組み・人のつながりを提供します。クリエイターの経済的基盤確立と応援者の参加を促進します。創作活動が継続できるように、収益化・プロモーションなどのサポートと、ファンコミュニティ・限定コンテンツなどの仕組みを提供します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="manifesto">
+        <div class="container">
+            <h2 class="section-title">クリエイターと企業の宣言</h2>
+            
+            <div class="declaration creator-declaration">
+                <h3>クリエイター宣言</h3>
+                <p>私たちクリエイターは、日々の創作活動を通じて社会に価値を提供しています。高いクリエイティブスキルを保ち続けるために、私たちは努力を惜しみません。</p>
+                <ul>
+                    <li>自分の軸を持ち、軸を曲げずともあり続けます</li>
+                    <li>独自の個性と存在感を大切にし、創造性という光を放ちます</li>
+                    <li>自分の作品に誇りを持ち、適正な対価を求める尊厳を守ります</li>
+                    <li>持続可能な創作活動とコミュニティの形成を通じた深い満足感を追求します</li>
+                    <li>応援してくれる人とともに成長し、影響を広げていきます</li>
+                </ul>
+                <p class="note">このロゴを使用することは、クリエイターとしての自分の価値を認め、買いたたかれることを拒否する意思表示です。好きなことを続けるためには経済的基盤が必要であり、私たちのスキルと時間には適正な価値があることを示します。</p>
+            </div>
+            
+            <div class="creator-types">
+                <h4>クリエイターの範囲</h4>
+                <div class="types-list">
+                    <span class="type-tag">音楽</span>
+                    <span class="type-tag">ダンス</span>
+                    <span class="type-tag">イラスト</span>
+                    <span class="type-tag">演劇</span>
+                    <span class="type-tag">配信活動</span>
+                    <span class="type-tag">アイドル活動</span>
+                    <span class="type-tag">WEB制作</span>
+                    <span class="type-tag">プログラミング</span>
+                    <span class="type-tag">ライティング</span>
+                    <span class="type-tag">写真・映像</span>
+                    <span class="type-tag">ハンドメイド</span>
+                    <span class="type-tag">その他創造活動</span>
+                </div>
+            </div>
+            
+            <div class="declaration company-declaration">
+                <h3>企業宣言</h3>
+                <p>私たちは、クリエイターの時間とスキルに適正な対価を支払うことを約束します。</p>
+                <ul>
+                    <li>クリエイターの創造性と独自性を尊重し、その価値を認めます</li>
+                    <li>持続可能なクリエイターエコシステムの構築に取り組みます</li>
+                    <li>誰もが平等に創作活動に参加できる環境づくりを支援します</li>
+                    <li>クリエイターとの互いに尊重し合うパートナーシップを目指します</li>
+                    <li>「誰ひとり取り残さない」創作の銀河の実現に貢献します</li>
+                </ul>
+                <p class="note">このロゴを掲示することは、クリエイターを大切にする企業であることの宣言です。私たちは、クリエイターの価値を認め、適正な対価を支払うことで、より豊かな創作文化の発展に貢献します。</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="invitation">
+        <div class="container">
+            <h2 class="section-title">シンセカイへの招待</h2>
+            <p>お互いが寄り添い、支え合う関係。<br>
+            単なる一時的な楽しさではなく、持続可能な創作活動とコミュニティの形成を通じた、より深い満足感。</p>
+            <p>FunLinkは、「創る人と支える人が、もっと自然につながれる銀河」をつくります。<br>
+            ここでは、クリエイターが活動しやすい環境と、応援する人が関わりやすい仕組みを整え、創作の可能性を広げます。</p>
+            <p>このつながりが、やがて大きな銀河を形作り、「好きなことを続けられる社会」を実現していくのです。</p>
+            <div class="cta-button">
+                <a href="#" class="button">FunLinkに参加する</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="supporters">
+        <div class="container">
+            <h2 class="section-title">賛同クリエイター</h2>
+            <div class="creator-list">
+                <!-- クリエイター一覧（サンプル） -->
+                <div class="creator-item">
+                    <img src="images/creator/sample-creator.png" alt="クリエイター" class="creator-avatar">
+                    <p class="creator-name">クリエイター名</p>
+                </div>
+                <!-- さらに複数のクリエイターを追加 -->
+            </div>
+            
+            <h2 class="section-title">賛同企業</h2>
+            <div class="company-list">
+                <!-- 企業一覧（サンプル） -->
+                <div class="company-item">
+                    <img src="images/company/sample-company.png" alt="企業名" class="company-logo">
+                    <p class="company-name">企業名</p>
+                </div>
+                <!-- さらに複数の企業を追加 -->
+            </div>
+        </div>
+    </section>
+    
+    <section class="download">
+        <div class="container">
+            <h2 class="section-title">ロゴダウンロード</h2>
+            <div class="download-options">
+                <div class="download-option">
+                    <h3>企業向けロゴ</h3>
+                    <p>クリエイターを応援する企業として、このロゴを活用いただくことで、あなたの企業とクリエイターの「つながり」を視覚的に表現できます。</p>
+                    <div class="logo-samples">
+                        <img src="images/downloads/company/color/logo_funlink_RGB_color.png" alt="企業向けロゴ" class="logo-sample">
+                    </div>
+                    <a href="#" class="button">ロゴ使用申請</a>
+                </div>
+                <div class="download-option">
+                    <h3>クリエイター向けロゴ</h3>
+                    <p>あなたの創作活動に誇りを持ち、FunLinkのロゴをプロフィールやバナー、アイコンに使いませんか？</p>
+                    <div class="logo-samples">
+                        <img src="images/downloads/creator/color/logo_funlink_RGB_maru_ginga.png" alt="クリエイター向けロゴ" class="logo-sample">
+                    </div>
+                    <a href="#" class="button">ロゴダウンロード</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="images/brand/logo/white/logo_funlink_white_RGB_black.png" alt="FunLink" width="150">
+            </div>
+            <p class="copyright">&copy; 2025 FunLink - All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/smooth-animations.js"></script>
+    <script src="js/stars.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>
+
+

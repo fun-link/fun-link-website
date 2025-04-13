@@ -9,93 +9,92 @@ html, body {
   padding: 0;
 }
 
-/* コンテナの幅制限 */
+/* コンテナのレイアウト改善 */
 .container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1200px;
   box-sizing: border-box;
   padding: 0 20px;
   margin: 0 auto;
   overflow: hidden;
 }
 
-/* メニュー固定位置の調整 */
-.main-nav.active {
-  width: 250px;
-  max-width: 80vw;
-  right: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* 右側メニューレイアウト調整 */
-.main-nav ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.main-nav li {
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.main-nav a {
+/* メインコンテンツエリア */
+main, .main-content {
   display: block;
-  padding: 12px 15px;
-  color: white;
-  text-decoration: none;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* セクション内コンテンツ制限 */
+/* 右側メニューの位置調整 */
+.main-nav {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100vh;
+  background-color: rgba(0, 10, 30, 0.95);
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+
+.main-nav.active {
+  right: 0;
+}
+
+/* セクションの横幅調整 */
 section {
   width: 100%;
-  max-width: 100%;
-  overflow: hidden;
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 40px 20px;
   box-sizing: border-box;
 }
 
-/* 画像サイズの制限 */
-img {
+/* タイプリストのレイアウト調整 */
+.types-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.type-tag {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: rgba(0, 50, 100, 0.5);
+  border-radius: 20px;
+  margin: 5px;
+}
+
+/* リスト項目のレイアウト改善 */
+ul, ol {
+  padding-left: 20px;
+  margin: 20px 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* 画像の中央寄せ */
+.logo-sample, .creator-avatar, .company-logo {
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
-  height: auto;
 }
 
-/* ハンバーガーメニュー改善 */
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 2000;
-  cursor: pointer;
-}
-
-/* メディアクエリの改善 */
+/* モバイル用スタイル調整 */
 @media (max-width: 768px) {
-  body {
-    padding-right: 0 !important; /* スクロールバー分の余白削除 */
+  section {
+    padding: 20px 15px;
+    margin: 40px auto;
   }
   
-  .container {
-    padding: 0 15px;
+  .type-tag {
+    padding: 5px 10px;
+    margin: 3px;
   }
-  
-  .main-nav.active {
-    width: 250px;
-  }
-}
-
-/* スクロールバー非表示（オプション） */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
 }
