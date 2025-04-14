@@ -1,0 +1,44 @@
+/* キャラクターとロゴサイズ拡大 */
+.character {
+  width: 300px !important;
+  height: auto !important;
+  position: relative;
+  z-index: 3;
+  display: block !important;
+  margin: 0 auto 40px auto;
+}
+
+.character img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.planet-logo {
+  width: 400px !important;
+  height: auto !important;
+}
+
+/* 親要素のサイズ制限を解除 */
+.hero-image, .orbit-circle, .hero-content {
+  max-width: none !important;
+}
+
+/* キャラクターの親要素にも余分なスペースを確保 */
+.hero-image {
+  min-height: 600px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 公転アニメーション用コンテナのレイアウト修正 */
+.orbital-system {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
