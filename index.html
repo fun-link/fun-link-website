@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="css/enhanced-visuals.css">
     <link rel="stylesheet" href="css/orbital-animation.css">
     <link rel="stylesheet" href="css/logo-guidelines.css">
+    <!-- ローカル開発用スタイル - 本番では読み込まれない -->
+<script>
+    if (window.location.protocol === 'file:') {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'css/local-dev.css';
+      document.head.appendChild(link);
+    }
+    </script>
 </head>
 <body>
 <header class="site-header">
@@ -451,3 +460,13 @@
 <script src="js/menu.js"></script>
 </body>
 </html>
+<!-- ローカル開発用スタイル - 本番では読み込まれない -->
+<script>
+if (window.location.protocol === 'file:') {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'css/local-dev.css';
+  document.head.appendChild(link);
+}
+</script>
+</head>
