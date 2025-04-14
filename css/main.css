@@ -1,0 +1,36 @@
+/* メインスタイル */
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ロゴとキャラクターのサイズ調整 */
+.character-image {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* ダウンロードボタン */
+.download-button {
+  display: inline-block;
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.download-button:hover {
+  background-color: #003d7e;
+}
+
+.download-button.orange {
+  background-color: #FF8800;
+}
+
+.download-button.orange:hover {
+  background-color: #E67A00;
+}
