@@ -1,0 +1,57 @@
+以下のCSSコードに置き換えてください：
+
+/* キャラクター配置の修正 */
+.character {
+  position: relative !important;
+  transform: scale(1.0) !important; /* リセット */
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  overflow: visible !important;
+}
+
+.character img {
+  width: 400px !important; /* 固定サイズで指定 */
+  height: auto !important;
+  max-width: none !important;
+  position: relative !important;
+  transform: translateY(0) !important; /* 位置調整 */
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* オービットサークルの調整 */
+.orbit-circle {
+  overflow: visible !important;
+  position: relative !important;
+  height: auto !important;
+}
+
+/* テキストサイズ */
+h1, h2, h3, .section-title {
+  font-size: 24px !important;
+}
+
+p, .section-text, .tagline {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+/* キャラクターのスケール調整を上書き */
+.character[style*="transform: scale(1.5)"] {
+  transform: scale(1.5) !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* コンテナサイズ */
+.container {
+  width: 90% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* ヒーローセクション */
+.hero-image {
+  height: auto !important;
+  min-height: 500px !important;
+}
