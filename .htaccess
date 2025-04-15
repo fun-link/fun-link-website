@@ -1,4 +1,18 @@
-#wwwなしで統一するかつhttpsにリダイレクト設定をする場合
+# PDFとZIPファイルのMIMEタイプを正しく設定
+AddType application/pdf .pdf
+AddType application/zip .zip
+
+# PDFファイルのダウンロードを強制
+<FilesMatch "\.pdf$">
+  Header set Content-Disposition "attachment"
+  Header set Content-Type "application/pdf"
+</FilesMatch>
+
+# ZIPファイルのダウンロードを強制
+<FilesMatch "\.zip$">
+  Header set Content-Disposition "attachment"
+  Header set Content-Type "application/zip"
+</FilesMatch>
 RewriteEngine on
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
