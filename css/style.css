@@ -18,6 +18,10 @@ body {
     color: #fff;
     background-color: var(--space-bg);
     overflow-x: hidden;
+    
+    .animation-adjustment {
+        display: none !important; /* PCとモバイル共通で非表示 */
+    }
 }
 
 .container {
