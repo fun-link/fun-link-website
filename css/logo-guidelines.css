@@ -43,6 +43,15 @@
     margin-bottom: 20px;
     color: #333;
 }
+/* オレンジ色のダウンロードボタン */
+.download-button.orange {
+    background: linear-gradient(to right, #DD6500, #FF8800);
+}
+
+.download-button.orange:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255,136,0,0.2);
+}
 
 .concept-details {
     display: flex;
