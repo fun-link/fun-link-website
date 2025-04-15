@@ -19,12 +19,16 @@ exec('cd ' . $repo_dir . ' && git pull origin main 2>&1', $output);
 $pull_output = implode("\n", $output);
 write_log("Git pull output: " . $pull_output);
 
-// ファイルをウェブディレクトリにコピー
+// すべてのファイルをウェブディレクトリにコピー
 $output = [];
 exec('cp -r ' . $repo_dir . '/css ' . $web_root . '/ 2>&1', $output);
 exec('cp -r ' . $repo_dir . '/js ' . $web_root . '/ 2>&1', $output);
+exec('cp -r ' . $repo_dir . '/assets ' . $web_root . '/ 2>&1', $output);
 exec('cp ' . $repo_dir . '/index.html ' . $web_root . '/ 2>&1', $output);
+exec('cp ' . $repo_dir . '/download.php ' . $web_root . '/ 2>&1', $output);
+exec('cp ' . $repo_dir . '/.htaccess ' . $web_root . '/ 2>&1', $output);
 $copy_output = implode("\n", $output);
 write_log("File copy output: " . $copy_output);
 
 echo "Deployment completed. Check deploy-log.txt for details.";
+?>
