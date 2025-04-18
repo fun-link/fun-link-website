@@ -19,7 +19,25 @@
   height: auto !important;
 }
 
-/* 親要素のサイズ制限を解除 */
+/* 台形枠を非表示にする */
+.logo-frame, .logo-container-wrapper, .logo-outer-box {
+  display: none; /* または background: transparent; */
+}
+
+/* メインのコンテナに直接背景を適用 */
+body, .main-container, .page-wrapper {
+  background-image: url('../images/brand/backgrounds/galaxy-background.PNG');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ロゴコンテナのスタイルを維持 */
+.logo-container {
+  /* 既存のスタイルはそのまま */
+  /* ボーダーを追加してロゴを目立たせる場合 */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
 .hero-image, .orbit-circle, .hero-content {
   max-width: none !important;
 }
@@ -42,11 +60,3 @@
   justify-content: center;
   align-items: center;
 } 
-.logo-container {
-  background-image: url('../images/brand/backgrounds/galaxy-background.PNG');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  box-shadow: 0 0 30px rgba(0, 100, 0, 0.5);
-  transition: all 0.3s ease;
-}
