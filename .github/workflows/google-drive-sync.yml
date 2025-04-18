@@ -4,15 +4,16 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '**/*manual-update*.md'  # マニュアルファイルのみを対象
+      - '**/*manual-update*.md'
 
 jobs:
   upload:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          submodules: 'false'  # サブモジュールを無効化
         
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -29,3 +30,4 @@ jobs:
           GOOGLE_DRIVE_CREDENTIALS: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}
           GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         run: python .github/scripts/upload_to_drive.py
+        continue-on-error: true  # エラーがあっても続行
