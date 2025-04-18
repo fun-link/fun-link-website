@@ -42,3 +42,11 @@
   justify-content: center;
   align-items: center;
 } 
+.logo-container {
+  background-image: url('../images/brand/backgrounds/galaxy-background.PNG');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(0, 100, 0, 0.5);
+  transition: all 0.3s ease;
+}
