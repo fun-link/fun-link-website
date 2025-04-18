@@ -5,13 +5,17 @@ on:
     branches: [ main ]
     paths:
       - '**/*manual-update*.md'
+  workflow_dispatch:  # 手動実行オプション
 
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+           
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -21,6 +25,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install google-api-python-client oauth2client
+          
+      - name: List files
+        run: find . -name "*manual-update*.md"
           
       - name: Upload to Google Drive
         env:
