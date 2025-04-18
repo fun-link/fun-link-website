@@ -15,8 +15,14 @@
 }
 
 .planet-logo {
+  background-image: url('../images/brand/backgrounds/galaxy-background.PNG') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 30px rgba(0, 100, 0, 0.5) !important;
   width: 400px !important;
   height: auto !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
 }
 
 /* 台形枠を非表示にする */
@@ -24,20 +30,18 @@
   display: none; /* または background: transparent; */
 }
 
-/* メインのコンテナに直接背景を適用 */
-body, .main-container, .page-wrapper {
-  background-image: url('../images/brand/backgrounds/galaxy-background.PNG');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
 
-/* ロゴコンテナのスタイルを維持 */
+/* ロゴコンテナの背景設定 */
 .logo-container {
-  /* 既存のスタイルはそのまま */
-  /* ボーダーを追加してロゴを目立たせる場合 */
+  background-image: url('../images/brand/backgrounds/galaxy-background.PNG') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 30px rgba(0, 100, 0, 0.5) !important;
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
+
+
 .hero-image, .orbit-circle, .hero-content {
   max-width: none !important;
 }
